@@ -98,7 +98,6 @@ if app.config.get('SENTRY_DSN'):
 
 babel = Babel(app)
 
-
 @babel.localeselector
 def get_locale():
     if current_user.is_authenticated():
@@ -109,3 +108,4 @@ def get_locale():
     if lang is None:
         lang = 'en'
     return lang
+
