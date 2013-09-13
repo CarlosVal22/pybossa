@@ -355,14 +355,6 @@ def users(name):
     cached_teams.clean(1)
     team = cached_teams.get_team(name)
 
-    '''
-    team = Team.query.filter(Team.name==name)\
-                    .outerjoin(User2Team)\
-                    .filter(or_ (Team.public ==True,\
-                        User2Team.user_id == current_user.id))\
-                        .first()
-    '''
-
     title = gettext('Search Users')
 
     if not require.team.read():
