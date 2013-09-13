@@ -8,11 +8,6 @@
       {{ helper.render_teams_nav(team, team_type, current_user) }}
     </div>
     <div class="span9" style="min-height:400px">
-        {% if current_user.is_authenticated() and team_type=='myteams' %}
-          <h1><strong>{{ _('Team') }}</strong>: {{ _('Create a new Team') }}</h1>
-          <a href="{{ url_for('team.new')}}" class="btn">{{ _('Create new Team') }}</a>
-        {% endif %}
-
         <h1>
            <i class="icon-th"></i> {% if teams %}{{pagination.total_count}}{% endif %}  {{ title }}
            {% if teams %}
@@ -31,10 +26,13 @@
           {% endfor %}
           {{ helper.render_pagination(pagination) }}
           {% else %}
-
               {% if team_type=='myteams' %}
-                <h2>{{ _('Not belong to any team') }}</h2>
-                <a href="{{ url_for('team.search_teams', type='public')}}" class="btn">{{ _('Search for a public Team') }}</a>
+                <h2>{{ _('You don\'t belong to any team yet!') }}</h2>
+                <h2>{{ _('You can ') }}  
+                    <a href="{{ url_for('team.new')}}">{{ _('create a new team') }}</a>
+                    {{ _('or') }}
+                    <a href="{{ url_for('team.search_teams', type='public')}}">{{ _('join to an existing team') }}</a>
+                </h2>
 
               {% else %}
                 <h2>{{ _('No available teams') }}</h2>
