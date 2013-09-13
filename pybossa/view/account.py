@@ -181,6 +181,10 @@ class UpdateProfileForm(Form):
                 lang = gettext("English")
             if locale == 'es':
                 lang = gettext("Spanish")
+            if locale == 'fr':
+                lang = gettext("French")
+            if locale == 'pt':
+                lang = gettext("Portuguese")
             choices.append((locale, lang))
         self.locale.choices = choices
 
