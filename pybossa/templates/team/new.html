@@ -1,14 +1,13 @@
 {% extends "/base.html" %}
 {% set active_page = "create" %}
-{% set active_link  = "teams" %}
+{% set active_link = "create" %}
 {% import "team/_helpers.html" as helper %}
-
 
 {% block content %}
 {% from "_formhelpers.html" import render_field %}
 <div id="app-form" class="row"> 
     <div class="span3">
-      {{ helper.render_teams_nav(team, 'myteams', current_user) }}
+      {{ helper.render_teams_nav(team, active_link, current_user) }}
     </div>
     <div class="span9">
         <h1><strong>{{ _('Team') }}</strong>: {{ _('Create a new Team') }}</h1>
