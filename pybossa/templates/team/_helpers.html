@@ -35,6 +35,7 @@
   <ul data-spy="affix" data-offset-top="200px" class="nav nav-list bs-docs-sidenav affix-top">
     {% if current_user.is_authenticated() %}
         <li {% if active_link=="myteams"%}class="active"{% endif %}><a href="{{ url_for('team.myteams')}}"><i class="icon-chevron-right"></i> {{ _('My Teams') }}</a></li>
+        <li {% if active_link=="create"%}class="active"{% endif %}><a href="{{ url_for('team.new')}}"><i class="icon-chevron-right"></i> {{ _('Create a New') }}</a></li>
     {% endif %}
     <li {% if active_link=="public"%}class="active"{% endif %}><a href="{{url_for('team.index')}}"><i class="icon-chevron-right"></i> {{ _('List of Public Teams') }}</a></li>
     {% if current_user.admin == 1%}
