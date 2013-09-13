@@ -1,0 +1,22 @@
+{% extends "/base.html" %}
+{% set active_page = "create" %}
+{% set active_link = "create" %}
+{% import "team/_helpers.html" as helper %}
+
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<div id="app-form" class="row"> 
+    <div class="span3">
+      {{ helper.render_teams_nav(team, active_link, current_user) }}
+    </div>
+    <div class="span9">
+        <h1><strong>{{ _('Team') }}</strong>: {{ _('Send Message') }}</h1>
+
+         {{ _('We\'ve send a email to this person with Team Public Invitation Only instructions') }}
+    </div>
+</div>
+<script>
+    $("span[rel='tooltip']").tooltip();
+    $("i[rel='tooltip']").tooltip();
+</script>
+{% endblock %}
