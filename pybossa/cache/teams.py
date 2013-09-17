@@ -146,7 +146,6 @@ def get_team(name):
     elif current_user.admin == 1:
        return Team.query.filter_by(name=name).first_or_404()
     else:
-        print "busqueda de team"
         return Team.query.filter(Team.name==name)\
                     .outerjoin(User2Team)\
                     .filter(or_ (Team.public ==True,\
