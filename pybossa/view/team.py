@@ -28,7 +28,7 @@ from flask.ext.mail import Message
 from flaskext.wtf import Form, TextField, PasswordField, validators, \
         ValidationError, IntegerField, HiddenInput, SelectField, BooleanField
 
-from pybossa.core import db, mail
+from pybossa.core import db, mail, signer
 import pybossa.validator as pb_validator
 import pybossa.model as model
 from flask.ext.babel import lazy_gettext, gettext
@@ -140,7 +140,6 @@ def myteams(page):
     return team_index(page, cached_teams.get_signed_teams, 'myteams',
                       True, False, gettext('My Teams'))
 
-
 def team_index(page, lookup, team_type, fallback, use_count, title):
     '''Show team list by type '''
     if not require.team.read():
@@ -207,13 +206,11 @@ def search_teams(type):
     if not require.team.read():
         abort(403)
     
-    print "*** Search Name ***"
     title = gettext('Search name of teams')
     form = SearchForm(request.form)
     teams = db.session.query(Team).all()
 
     if request.method == 'POST' and form.user.data:
-        print "*** Search POST ***"
         query = '%' + form.user.data.lower() + '%'
         if type == 'public':
             founds = db.session.query(Team)\
@@ -327,7 +324,6 @@ def new():
         public=form.public.data,
         owner_id=current_user.id
         )
-
 
     ''' Insert into the current user in the new group '''
     try:
@@ -477,38 +473,97 @@ def user_add(name,user=None):
                 .first()
 
     if user2team:
-        flash(gettext('This user already is in this team'), 'error')
+        flash(gettext('This user is already in this team'), 'error')
         return redirect(url_for('team.search_users',  name=team.name ))
 
     else:
-        user2team = User2Team(
+        if team.public == True:
+            user2team = User2Team(
                         user_id = user_id,
                         team_id = team.id
                         )
 
+            db.session.add(user2team)
+            db.session.commit()
+            flash(gettext('Association to the team created'), 'success')
+            return redirect(url_for('team.myteams' ))
+
+        else:
+            msg = Message(subject='Invitation to a Team',
+                            recipients=[user_search.email_addr])
+
+            userdict = {'user': user_search.name, 
+                        'team': team.name
+                        }
+
+            key = signer.dumps(userdict, salt='join-private-team')
+
+            join_url = url_for('.join_private_team',
+                                key=key, _external=True)
+            msg.body = render_template(
+                '/team/email/send_invitation.md',
+                user=user_search, team=team, join_url=join_url)
+            msg.html = markdown(msg.body)
+            mail.send(msg)
+
+            return render_template('./team/message.html')
+
+@blueprint.route('/join-private-team', methods=['GET', 'POST'])
+@login_required
+def join_private_team():
+    key = request.args.get('key')
+    if key is None:
+        abort(403)
+    userdict = {}
+    try:
+        userdict = signer.loads(key, max_age=3600, salt='join-private-team')
+    except BadData:
+        abort(403)
+
+    username = userdict.get('user')
+    teamname = userdict.get('team')
+    if not username or not teamname or current_user.name != username:
+        abort (403)
+
+    ''' Add to Public with invitation team '''
+    team = cached_teams.get_team(teamname)
+    if not team:
+        flash(gettext('This team doesn\'t exists'), 'error')
+        return redirect(url_for('team.myteams'))
+
+    ''' Search relationship '''
+    user2team = db.session.query(User2Team)\
+                .filter(User2Team.user_id == current_user.id)\
+                .filter(User2Team.team_id == team.id )\
+                .first()
+
+    if user2team:
+        flash(gettext('This user is already in this team'), 'error')
+        return redirect(url_for('team.users',  name=team.name ))
+    else:
+        user2team = User2Team(user_id = current_user.id,
+                              team_id = team.id
+                              )
         db.session.add(user2team)
         db.session.commit()
-        flash(gettext('Association to the team created'), 'success')
-        return redirect(url_for('team.myteams' ))
+        flash(gettext('Congratulations! You belong to the Public Invitation Only Team'), 'sucess')
+        return redirect(url_for('team.users',  name=team.name ))
 
-@blueprint.route('/<name>/separate', methods=['GET', 'POST'])
 @blueprint.route('/<name>/separate/<user>', methods=['GET', 'POST'])
 @login_required
 def user_delete(name,user=None):
     team = cached_teams.get_team(name)
     title = gettext('Delete User from a Team')
-
+        
     if not require.team.read():
         abort(403)
-
+                           
     if request.method == 'GET':
-        return render_template(
-            '/team/user_separate.html',
-            title=title,
-            team=team,
-            user=user
-            )
-
+        return render_template('/team/user_separate.html',
+                               title=title,
+                               team=team,
+                               user=user
+                                )
     if user:
         user_search = User.query.filter_by(name=user).first()
         if not user_search:
@@ -526,9 +581,9 @@ def user_delete(name,user=None):
 
     ''' Check if exits association'''
     user2team = db.session.query(User2Team)\
-                    .filter(User2Team.user_id == user_id )\
-                    .filter(User2Team.team_id == team.id )\
-                    .first()
+                                    .filter(User2Team.user_id == user_id )\
+                                    .filter(User2Team.team_id == team.id )\
+                                    .first()
 
     if user2team:
         db.session.delete(user2team)
