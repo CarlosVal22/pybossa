@@ -11,7 +11,7 @@
         <h1>
            <i class="icon-th"></i> {% if teams %}{{pagination.total_count}}{% endif %}  {{ title }}
            {% if teams %}
-                <a class="pull-right btn btn-primary" href="{{url_for('team.search_teams', type=team_type)}}"><i class="icon-group" style="color:white"></i> {{ _('Search Team') }}</a>
+                <a class="pull-right btn btn-primary" href="{{url_for('team.search_teams', type=team_type)}}"><i class="icon-group" style="color:white"></i> {% if team_type=='myteams' %}{{ _('Search in Teams I belong') }} {% else %} {{ _('Search in Public Teams') }} {% endif %}</a>
            {% endif %}
         <h1>
             {% if teams %}
@@ -27,13 +27,13 @@
           {{ helper.render_pagination(pagination) }}
           {% else %}
               {% if team_type=='myteams' %}
-                <h2>{{ _('You don\'t belong to any team yet!') }}</h2>
-                <h2>{{ _('You can ') }}  
+                <h2>{{ _('You don\'t belong to any team yet') }}</h2>
+                <h2>{{ _('You can') }}  
                     <a href="{{ url_for('team.new')}}">{{ _('create a new team') }}</a>
                     {{ _('or') }}
-                    <a href="{{ url_for('team.search_teams', type='public')}}">{{ _('join to an existing team') }}</a>
-                </h2>
+                    <a href="{{ url_for('team.index') }}">{{ _('join to an existing team') }}</a>
 
+                </h2>
               {% else %}
                 <h2>{{ _('No available teams') }}</h2>
               {% endif %}
