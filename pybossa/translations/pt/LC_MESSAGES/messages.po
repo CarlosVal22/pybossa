@@ -692,7 +692,7 @@ msgstr "Experimenta!"
 
 #: templates/applications/_helpers.html:212
 msgid "Start Contributing Now!"
-msgstr "Começe já a contribuir!"
+msgstr "Comece já a contribuir!"
 
 #: templates/applications/actions.html:9
 #: templates/applications/settings.html:18
