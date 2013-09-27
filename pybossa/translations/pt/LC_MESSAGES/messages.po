@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-09-12 13:12+0200\n"
+"POT-Creation-Date: 2013-09-27 10:46+0200\n"
 "PO-Revision-Date: 2013-08-07 15:01+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -86,6 +86,20 @@ msgstr "Sair"
 msgid "Sign in"
 msgstr "Iniciar Sessão"
 
+#: templates/base.html:56
+msgid ""
+"Cookies help us deliver our services. By using our services, you agree to"
+" our use of cookies."
+msgstr "As cookies otimizam os nossos serviços. Ao utilizá-los está a concordar com a utilização de cookies."
+
+#: templates/base.html:56
+msgid "OK"
+msgstr ""
+
+#: templates/base.html:56
+msgid "More info"
+msgstr "Mais Info"
+
 #: templates/base.html:65
 msgid "Resources"
 msgstr "Recursos"
@@ -103,7 +117,6 @@ msgid "Cookies Policy"
 msgstr ""
 
 #: templates/base.html:70
-#, fuzzy
 msgid "Stats"
 msgstr "tarefas"
 
@@ -140,7 +153,6 @@ msgid "Contact"
 msgstr ""
 
 #: templates/base.html:92
-#, fuzzy
 msgid "Email"
 msgstr "Correio electrónico"
 
@@ -149,7 +161,6 @@ msgid "Twitter"
 msgstr ""
 
 #: templates/account/_helpers.html:15 templates/team/teams.html:52
-#, fuzzy
 msgid "Teams"
 msgstr "tarefas"
 
@@ -171,7 +182,7 @@ msgstr "Tweet"
 
 #: templates/account/_helpers.html:46
 msgid "Nick"
-msgstr "Nome de Usuário"
+msgstr "Nome do Utilizador"
 
 #: templates/account/_helpers.html:48 view/account.py:60
 msgid "E-mail"
@@ -179,22 +190,22 @@ msgstr "Correio electrónico"
 
 #: templates/account/_helpers.html:51 templates/account/_helpers.html:64
 #: templates/stats/index.html:20 templates/stats/teams.html:20
-#: templates/team/_helpers.html:92 templates/team/_helpers.html:130
-#: templates/team/_helpers.html:158 templates/team/_helpers.html:162
+#: templates/team/_helpers.html:93 templates/team/_helpers.html:131
+#: templates/team/_helpers.html:159 templates/team/_helpers.html:163
 msgid "Rank"
 msgstr "Classificação"
 
 #: templates/account/_helpers.html:56
 #: templates/applications/tasks_browse.html:34
-#: templates/applications/tasks_browse.html:36 templates/team/_helpers.html:159
+#: templates/applications/tasks_browse.html:36 templates/team/_helpers.html:160
 msgid "of"
 msgstr "de"
 
-#: templates/account/_helpers.html:56 templates/team/_helpers.html:159
+#: templates/account/_helpers.html:56 templates/team/_helpers.html:160
 msgid "with a Score of"
 msgstr "com uma pontuação de"
 
-#: templates/account/_helpers.html:56 templates/team/_helpers.html:159
+#: templates/account/_helpers.html:56 templates/team/_helpers.html:160
 msgid "contributed tasks"
 msgstr "tarefas contribuídas"
 
@@ -202,10 +213,10 @@ msgstr "tarefas contribuídas"
 msgid "The user has not contributed a task yet"
 msgstr "O usuário ainda não contribuiu com tarefas"
 
-#: templates/account/_helpers.html:67 templates/home/index.html:80
-#: templates/home/index1.html:80 templates/team/users.html:25
+#: templates/account/_helpers.html:67 templates/account/index.html:24
+#: templates/home/index.html:80 templates/team/users.html:25
 msgid "Joined"
-msgstr "Juntou-se"
+msgstr "Registou-se"
 
 #: templates/account/_helpers.html:70
 msgid "API key"
@@ -213,11 +224,11 @@ msgstr "Chave API"
 
 #: templates/account/_helpers.html:73
 msgid "See your public profile"
-msgstr "Visualiza o teu perfil público"
+msgstr "Visualize o seu perfil público"
 
 #: templates/account/_helpers.html:74
 msgid "Edit your profile"
-msgstr "Edita o teu perfil"
+msgstr "Edite o seu perfil"
 
 #: templates/account/_helpers.html:86 templates/applications/_helpers.html:7
 #: templates/team/_helpers.html:7 templates/team/teams.html:12
@@ -228,6 +239,10 @@ msgstr "Anterior"
 #: templates/team/_helpers.html:27 templates/team/teams.html:32
 msgid "Next"
 msgstr "Seguinte"
+
+#: templates/account/applications.html:13
+msgid "'s"
+msgstr ""
 
 #: templates/account/applications.html:16
 msgid "Published"
@@ -251,7 +266,11 @@ msgstr "usuários registados"
 
 #: templates/account/index.html:17 templates/stats/global.html:49
 msgid "Leaderboard"
-msgstr "Primeio Classificado"
+msgstr "Tabela de Classificação"
+
+#: templates/account/index.html:25
+msgid "Contributed Tasks"
+msgstr "tarefas contribuídas"
 
 #: templates/account/password.html:13
 msgid "Change your Password"
@@ -283,7 +302,7 @@ msgstr "Guardar as Alterações"
 #: templates/applications/task_scheduler.html:28
 #: templates/applications/importers/csv.html:24
 #: templates/applications/importers/epicollect.html:25
-#: templates/applications/importers/gdocs.html:24 templates/team/new.html:23
+#: templates/applications/importers/gdocs.html:24 templates/team/new.html:22
 #: templates/team/register.html:24
 msgid "Cancel"
 msgstr "Cancelar"
@@ -306,7 +325,7 @@ msgstr "O seu Perfil"
 
 #: templates/account/profile.html:17
 msgid "Your Contributions"
-msgstr "As suas Contribuições"
+msgstr "As minhas Contribuições"
 
 #: templates/account/profile.html:29
 msgid "You have contributed"
@@ -393,9 +412,9 @@ msgstr "Não, não reiniciar a chave API!"
 #: templates/applications/stats.html:303 templates/applications/stats.html:304
 #: templates/applications/stats.html:305 templates/applications/stats.html:306
 #: templates/applications/stats.html:307 templates/applications/stats.html:372
-#: view/admin.py:119 view/team.py:299
+#: view/admin.py:119 view/team.py:297
 msgid "User"
-msgstr "Usuário"
+msgstr "Utilizador"
 
 #: templates/account/settings.html:14 templates/account/update.html:13
 msgid "Update your profile"
@@ -488,12 +507,10 @@ msgid "Manage Categories"
 msgstr ""
 
 #: templates/admin/categories.html:20 templates/admin/update_category.html:19
-#, fuzzy
 msgid "Category name"
 msgstr "nome de usuário"
 
 #: templates/admin/categories.html:21 templates/admin/update_category.html:20
-#, fuzzy
 msgid "Category description"
 msgstr "Descrição Longa"
 
@@ -502,7 +519,6 @@ msgid "Add Category"
 msgstr ""
 
 #: templates/admin/categories.html:30
-#, fuzzy
 msgid "List of Available Categories"
 msgstr "Todas as aplicações disponíveis"
 
@@ -544,7 +560,6 @@ msgid "Categories"
 msgstr ""
 
 #: templates/admin/index.html:23
-#, fuzzy
 msgid "Manage application categories"
 msgstr "Gerir aplicações em destaque"
 
@@ -553,7 +568,6 @@ msgid "Administrators"
 msgstr ""
 
 #: templates/admin/index.html:32
-#, fuzzy
 msgid "Manage administrators"
 msgstr "Gerir administradores"
 
@@ -565,13 +579,11 @@ msgstr ""
 msgid "Manage Admin Users"
 msgstr "Gerir Administradores"
 
-#: templates/admin/users.html:19 templates/team/search_teams.html:19
-#: templates/team/search_users.html:19
+#: templates/admin/users.html:19 templates/team/search_users.html:19
 msgid "Try with the full name or nick"
 msgstr "Tente com o nome completo ou nome de usuário"
 
-#: templates/admin/users.html:20 templates/team/search_teams.html:20
-#: templates/team/search_users.html:20
+#: templates/admin/users.html:20 templates/team/search_users.html:20
 msgid "Search"
 msgstr "Procurar"
 
@@ -581,7 +593,6 @@ msgstr "Utilizadores correntes com privilégios de administração"
 
 #: templates/applications/_helpers.html:36
 #: templates/applications/_helpers.html:237 templates/home/index.html:20
-#: templates/home/index1.html:20
 msgid "Info"
 msgstr "Informação"
 
@@ -598,7 +609,6 @@ msgstr "Contribua"
 #: templates/applications/stats.html:283 templates/applications/stats.html:373
 #: templates/applications/tasks.html:13
 #: templates/applications/tasks_browse.html:66 templates/home/index.html:86
-#: templates/home/index1.html:86
 msgid "Tasks"
 msgstr "Tarefas"
 
@@ -615,21 +625,21 @@ msgstr "Estatísticas"
 msgid "Settings"
 msgstr "Definições"
 
-#: templates/applications/_helpers.html:58 templates/team/_helpers.html:109
+#: templates/applications/_helpers.html:58 templates/team/_helpers.html:110
 msgid "ID"
 msgstr "ID"
 
 #: templates/applications/_helpers.html:60
-#: templates/applications/_helpers.html:140 templates/team/_helpers.html:76
-#: templates/team/_helpers.html:111 templates/team/_helpers.html:144
+#: templates/applications/_helpers.html:140 templates/team/_helpers.html:77
+#: templates/team/_helpers.html:112 templates/team/_helpers.html:145
 #: templates/team/teams.html:60 view/admin.py:215 view/applications.py:61
 #: view/team.py:68
 msgid "Description"
 msgstr ""
 
 #: templates/applications/_helpers.html:61
-#: templates/applications/_helpers.html:141 templates/team/_helpers.html:77
-#: templates/team/_helpers.html:112
+#: templates/applications/_helpers.html:141 templates/team/_helpers.html:78
+#: templates/team/_helpers.html:113
 msgid "Creation Date"
 msgstr "Data de Criação"
 
@@ -648,7 +658,7 @@ msgstr "Progresso Total"
 #: templates/applications/_helpers.html:210
 #: templates/applications/tasks_browse.html:19
 msgid "completed"
-msgstr ""
+msgstr "completo"
 
 #: templates/applications/_helpers.html:67
 #: templates/applications/_helpers.html:69
@@ -659,8 +669,8 @@ msgstr "Oculto"
 msgid "Yes"
 msgstr "Sim"
 
-#: templates/applications/_helpers.html:69 templates/team/user_add.html:22
-#: view/applications.py:69
+#: templates/applications/_helpers.html:69 templates/team/user_add.html:24
+#: templates/team/user_add.html:30 view/applications.py:69
 msgid "No"
 msgstr "Não"
 
@@ -671,18 +681,17 @@ msgstr ""
 
 #: templates/applications/_helpers.html:113
 #: templates/applications/_helpers.html:117
-#, fuzzy
 msgid "Add to Featured!"
 msgstr "Destacada!"
 
 #: templates/applications/_helpers.html:147
-#: templates/applications/_helpers.html:149 templates/team/_helpers.html:84
-#: templates/team/_helpers.html:120
+#: templates/applications/_helpers.html:149 templates/team/_helpers.html:85
+#: templates/team/_helpers.html:121
 msgid "Created by"
 msgstr "Criado por"
 
-#: templates/applications/_helpers.html:147 templates/team/_helpers.html:86
-#: templates/team/_helpers.html:122
+#: templates/applications/_helpers.html:147 templates/team/_helpers.html:87
+#: templates/team/_helpers.html:123
 msgid "Me"
 msgstr "Eu"
 
@@ -765,7 +774,6 @@ msgstr "Respostas"
 
 #: templates/applications/import_options.html:13
 #: templates/applications/tasks.html:20
-#, fuzzy
 msgid "Import Tasks"
 msgstr "Importar tarefas"
 
@@ -977,7 +985,6 @@ msgid "Change how the tasks are delivered to volunteers"
 msgstr ""
 
 #: templates/applications/task_settings.html:19
-#, fuzzy
 msgid "Scheduler"
 msgstr "Gestor de Tarefas"
 
@@ -990,7 +997,6 @@ msgid "Priority"
 msgstr ""
 
 #: templates/applications/task_settings.html:29
-#, fuzzy
 msgid "Delete Tasks"
 msgstr "Eliminar Tarefas"
 
@@ -1023,7 +1029,6 @@ msgid "Import"
 msgstr "Importar"
 
 #: templates/applications/tasks.html:25 templates/applications/tasks.html:57
-#, fuzzy
 msgid "Export Tasks"
 msgstr "Importar tarefas"
 
@@ -1033,12 +1038,10 @@ msgstr ""
 
 #: templates/applications/tasks.html:27 templates/applications/tasks.html:59
 #: view/applications.py:842
-#, fuzzy
 msgid "Export"
 msgstr "Importar"
 
 #: templates/applications/tasks.html:32
-#, fuzzy
 msgid "Task Presenter"
 msgstr "Editar o apresentador de tarefas"
 
@@ -1111,12 +1114,10 @@ msgstr ""
 "tarefa"
 
 #: templates/applications/tasks_browse.html:52
-#, fuzzy
 msgid "Download Task Results"
 msgstr "Descarregar os resultados"
 
 #: templates/applications/tasks_browse.html:56
-#, fuzzy
 msgid "Download Partial results"
 msgstr "Descarregar os resultados"
 
@@ -1126,7 +1127,7 @@ msgstr ""
 
 #: templates/applications/tutorial.html:14
 msgid "Start contributing"
-msgstr "Começe a contribuir"
+msgstr "Comence a contribuir"
 
 #: templates/applications/importers/csv.html:16
 msgid "From a CSV file"
@@ -1170,6 +1171,41 @@ msgstr "A partir de uma planilha de Google Docs"
 msgid "Please provide a URL to a Google Drive Spreadsheet with data for"
 msgstr "Por favor providencie um URL para uma planilha GoogleDrive com dados par"
 
+#: templates/help/_cookies_policy.html:3
+msgid "How"
+msgstr ""
+
+#: templates/help/_cookies_policy.html:3
+msgid "uses cookies"
+msgstr ""
+
+#: templates/help/_cookies_policy.html:5
+msgid ""
+"A cookie is a small piece of text sent to your browser by a website you "
+"visit. It helps the website to remember information about your visit, "
+"like your preferred language and other settings. That can make your next "
+"visit easier and the site more useful to you. Cookies play an important "
+"role. Without them, using the web would be a much more frustrating "
+"experience."
+msgstr ""
+
+#: templates/help/_cookies_policy.html:6
+msgid ""
+"In the following video from Google,  you can see a very good explanation "
+"about how cookies work:"
+msgstr ""
+
+#: templates/help/_cookies_policy.html:9
+msgid "Disabling cookies"
+msgstr ""
+
+#: templates/help/_cookies_policy.html:10
+msgid ""
+"However, if you want to disable the cookies in this site or other, we "
+"recommend you to check the help section of your web browser so you can "
+"disable them."
+msgstr ""
+
 #: templates/home/_about.html:5
 msgid ""
 "PyBossa is a free, open-source crowd-sourcing and micro-tasking platform."
@@ -1193,7 +1229,6 @@ msgid "PyBossa is different to existing efforts:"
 msgstr "A PyBossa é diferente dos projetos existentes porque:"
 
 #: templates/home/_about.html:10
-#, fuzzy, python-format
 msgid "It's a 100%% open-source"
 msgstr "É 100%% de código aberto"
 
@@ -1208,7 +1243,6 @@ msgstr ""
 "apoiar projetoorientados para voluntários."
 
 #: templates/home/_about.html:13
-#, fuzzy
 msgid ""
 "It's designed as a platform and framework for developing deploying crowd-"
 "sourcing and microtasking apps rather than being a crowd-sourcing "
@@ -1311,47 +1345,47 @@ msgstr "Todos os seus conteúdos e recursos são abertos e gratuitos"
 msgid "Things computers can't do"
 msgstr "Permite a execução de tarefas que um computador por si não executa"
 
-#: templates/home/index.html:35 templates/home/index1.html:35
+#: templates/home/index.html:35
 msgid "Get Started"
 msgstr "Começar"
 
-#: templates/home/index.html:36 templates/home/index1.html:36
+#: templates/home/index.html:36
 msgid "It's really simple to start contributing."
 msgstr "É muito fácil começar a contribuir."
 
-#: templates/home/index.html:39 templates/home/index1.html:39
+#: templates/home/index.html:39
 msgid " Start Contributing"
 msgstr "Começar a Contribuir"
 
-#: templates/home/index.html:39 templates/home/index1.html:39
+#: templates/home/index.html:39
 msgid "Create an App"
 msgstr "Criar uma Aplicação"
 
-#: templates/home/index.html:44 templates/home/index1.html:44
+#: templates/home/index.html:44
 msgid "Most Active Applications"
 msgstr "As Aplicações Mais Ativas"
 
-#: templates/home/index.html:56 templates/home/index1.html:56
+#: templates/home/index.html:56
 msgid "Start"
 msgstr "Começar"
 
-#: templates/home/index.html:64 templates/home/index1.html:64
+#: templates/home/index.html:64
 msgid "Your application"
 msgstr "A sua aplicação"
 
-#: templates/home/index.html:65 templates/home/index1.html:65
+#: templates/home/index.html:65
 msgid "could be here!"
 msgstr "pode estar aqui!"
 
-#: templates/home/index.html:66 templates/home/index1.html:66
+#: templates/home/index.html:66
 msgid "Create an app"
 msgstr "Criar uma aplicação"
 
-#: templates/home/index.html:75 templates/home/index1.html:75
+#: templates/home/index.html:75
 msgid "Most Active Volunteers"
 msgstr "Os Voluntários Mais Ativos"
 
-#: templates/home/index.html:82 templates/home/index1.html:82
+#: templates/home/index.html:82
 msgid "Submitted Tasks"
 msgstr "Tarefas Submetidas"
 
@@ -1360,17 +1394,14 @@ msgid "Search Results"
 msgstr "Procurar Resultados"
 
 #: templates/stats/global.html:38
-#, fuzzy
 msgid "General Statistics"
 msgstr "Consulte as estatísticas globais"
 
 #: templates/stats/global.html:46
-#, fuzzy
 msgid "Anonymous users"
 msgstr "Usuários Anónimos têm"
 
 #: templates/stats/global.html:47
-#, fuzzy
 msgid "Authenticated users"
 msgstr "Usuários autênticados têm"
 
@@ -1387,7 +1418,6 @@ msgid "with"
 msgstr ""
 
 #: templates/stats/global.html:55
-#, fuzzy
 msgid "contributed answers"
 msgstr "tarefas contribuídas"
 
@@ -1408,7 +1438,6 @@ msgid "No active application in the last 24 hours"
 msgstr ""
 
 #: templates/stats/global.html:135
-#, fuzzy
 msgid "Tasks and Answers"
 msgstr "Exportar tarefas e Respostas"
 
@@ -1421,7 +1450,6 @@ msgid "Number of Task Runs"
 msgstr ""
 
 #: templates/stats/global.html:167
-#, fuzzy
 msgid "Anonymous Volunteers"
 msgstr "Usuários Anónimos têm"
 
@@ -1434,77 +1462,77 @@ msgstr "Nome"
 msgid "Score"
 msgstr ""
 
-#: templates/stats/teams.html:21 templates/team/index.html:12
-#: templates/team/new.html:14 templates/team/user_add.html:12
+#: templates/stats/teams.html:21 templates/team/message.html:13
+#: templates/team/new.html:13 templates/team/user_add.html:13
 #: templates/team/user_separate.html:12
 msgid "Team"
 msgstr ""
 
-#: templates/team/_helpers.html:39
+#: templates/team/_helpers.html:38
+msgid "Create a New"
+msgstr "Criar uma aplicação"
+
+#: templates/team/_helpers.html:40
 msgid "List of Public Teams"
 msgstr ""
 
-#: templates/team/_helpers.html:41 templates/team/_helpers.html:82
-#: templates/team/_helpers.html:117 templates/team/_helpers.html:154
+#: templates/team/_helpers.html:42 templates/team/_helpers.html:83
+#: templates/team/_helpers.html:118 templates/team/_helpers.html:155
 msgid "Public Invitation Only"
 msgstr ""
 
-#: templates/team/_helpers.html:53
+#: templates/team/_helpers.html:54
 msgid "Member since"
 msgstr ""
 
-#: templates/team/_helpers.html:55 templates/team/_helpers.html:147
+#: templates/team/_helpers.html:56 templates/team/_helpers.html:148
 #: templates/team/teams.html:61 templates/team/users.html:40
 msgid "Owner"
 msgstr ""
 
-#: templates/team/_helpers.html:60
+#: templates/team/_helpers.html:61
 msgid "Add to team"
 msgstr ""
 
-#: templates/team/_helpers.html:64
+#: templates/team/_helpers.html:65
 msgid "Remove to team"
 msgstr ""
 
-#: templates/team/_helpers.html:78 templates/team/_helpers.html:127
-#: templates/team/_helpers.html:145 templates/team/settings.html:30
+#: templates/team/_helpers.html:79 templates/team/_helpers.html:128
+#: templates/team/_helpers.html:146 templates/team/settings.html:30
 msgid "Members"
 msgstr ""
 
-#: templates/team/_helpers.html:80 templates/team/_helpers.html:82
-#: templates/team/_helpers.html:115 templates/team/_helpers.html:117
-#: templates/team/_helpers.html:152 templates/team/_helpers.html:154
+#: templates/team/_helpers.html:81 templates/team/_helpers.html:83
+#: templates/team/_helpers.html:116 templates/team/_helpers.html:118
+#: templates/team/_helpers.html:153 templates/team/_helpers.html:155
 #: templates/team/teams.html:62
 msgid "Type"
 msgstr ""
 
-#: templates/team/_helpers.html:80 templates/team/_helpers.html:115
-#: templates/team/_helpers.html:152 templates/team/teams.html:62
+#: templates/team/_helpers.html:81 templates/team/_helpers.html:116
+#: templates/team/_helpers.html:153 templates/team/teams.html:62
 #: view/team.py:71
 msgid "Public"
 msgstr ""
 
-#: templates/team/_helpers.html:92 templates/team/_helpers.html:130
-#, fuzzy
+#: templates/team/_helpers.html:93 templates/team/_helpers.html:131
 msgid "with a score of"
 msgstr "com uma pontuação de"
 
-#: templates/team/_helpers.html:95
+#: templates/team/_helpers.html:96
 msgid "Configuration"
 msgstr ""
 
-#: templates/team/_helpers.html:148 templates/team/teams.html:59
-#, fuzzy
+#: templates/team/_helpers.html:149 templates/team/teams.html:59
 msgid "Created"
 msgstr "Criar"
 
-#: templates/team/_helpers.html:162
-#, fuzzy
+#: templates/team/_helpers.html:163
 msgid "The team  has not contributed a task yet"
 msgstr "O usuário ainda não contribuiu com tarefas"
 
 #: templates/team/delete.html:14
-#, fuzzy
 msgid "If you delete the team, it will be gone forever!"
 msgstr ""
 "Se eliminar esta aplicação e as suas tarefas, estas serão eliminadas para"
@@ -1515,64 +1543,81 @@ msgid "Are you sure you want to delete this team?"
 msgstr ""
 
 #: templates/team/delete.html:28 templates/team/settings.html:35
-#: templates/team/user_add.html:28 templates/team/user_separate.html:29
-#, fuzzy
+#: templates/team/user_add.html:37 templates/team/user_separate.html:29
 msgid "Sorry! This team does not exists."
 msgstr "Desculpe! Esta aplicação já não existe."
 
-#: templates/team/index.html:12 templates/team/new.html:14
-#, fuzzy
-msgid "Create a new Team"
-msgstr "Criar uma aplicação"
-
-#: templates/team/index.html:13
-msgid "Create new Team"
+#: templates/team/index.html:14
+msgid "Search in Teams I belong"
 msgstr ""
 
-#: templates/team/index.html:19 view/team.py:236 view/team.py:242
-#: view/team.py:248
-#, fuzzy
-msgid "Search Team"
-msgstr "nome de usuário"
+#: templates/team/index.html:14
+msgid "Search in Public Teams"
+msgstr ""
 
-#: templates/team/index.html:24
+#: templates/team/index.html:19
 msgid "Teams I belong"
 msgstr ""
 
-#: templates/team/index.html:26
-#, fuzzy
+#: templates/team/index.html:21
 msgid "All available teams"
 msgstr "todas as"
 
-#: templates/team/index.html:36
-msgid "Not belong to any team"
+#: templates/team/index.html:30
+msgid "You don't belong to any team yet"
+msgstr ""
+
+#: templates/team/index.html:31
+msgid "You can"
+msgstr ""
+
+#: templates/team/index.html:32
+msgid "create a new team"
+msgstr "Criar uma aplicação"
+
+#: templates/team/index.html:33
+msgid "or"
+msgstr ""
+
+#: templates/team/index.html:34
+msgid "join to an existing team"
 msgstr ""
 
 #: templates/team/index.html:38
 msgid "No available teams"
 msgstr ""
 
-#: templates/team/new.html:18 templates/team/register.html:19
-#, fuzzy
+#: templates/team/message.html:13
+msgid "Send Message"
+msgstr ""
+
+#: templates/team/message.html:15
+msgid ""
+"We've send a email to this person with Team Public Invitation Only "
+"instructions"
+msgstr ""
+
+#: templates/team/new.html:13
+msgid "Create a new Team"
+msgstr "Criar uma aplicação"
+
+#: templates/team/new.html:17 templates/team/register.html:19
 msgid "my team name"
 msgstr "o meu nome completo"
 
-#: templates/team/new.html:19 templates/team/register.html:20
-#, fuzzy
+#: templates/team/new.html:18 templates/team/register.html:20
 msgid "my team description"
 msgstr "Descrição Longa"
 
-#: templates/team/new.html:20
+#: templates/team/new.html:19
 msgid "Do you want to be public this team or public-invitation-only? "
 msgstr ""
 
-#: templates/team/new.html:22 templates/team/register.html:23
-#, fuzzy
+#: templates/team/new.html:21 templates/team/register.html:23
 msgid "Create a team"
 msgstr "Criar uma aplicação"
 
-#: templates/team/register.html:14 view/team.py:313
-#, fuzzy
+#: templates/team/register.html:14 view/team.py:311
 msgid "Create a Team"
 msgstr "Criar uma aplicação"
 
@@ -1580,17 +1625,15 @@ msgstr "Criar uma aplicação"
 msgid "Do you want to be public this team or public invitation only?"
 msgstr ""
 
-#: templates/team/search_teams.html:15 templates/team/search_users.html:15
+#: templates/team/search_users.html:15
 msgid "in"
 msgstr ""
 
 #: templates/team/settings.html:16
-#, fuzzy
 msgid "Team Settings"
 msgstr "Definições das Tarefas"
 
 #: templates/team/settings.html:19
-#, fuzzy
 msgid "Edit the team details"
 msgstr "Editar os detalhes da aplicação"
 
@@ -1607,12 +1650,10 @@ msgid "Join this team"
 msgstr ""
 
 #: templates/team/teams.html:52
-#, fuzzy
 msgid "registered teams"
 msgstr "usuários registados"
 
 #: templates/team/teams.html:52
-#, fuzzy
 msgid "Teamboard"
 msgstr "Primeio Classificado"
 
@@ -1625,30 +1666,34 @@ msgid "Update the team"
 msgstr ""
 
 #: templates/team/update.html:19
-#, fuzzy
 msgid "Do you want to be public this team?"
 msgstr "Quer ajudar?"
 
-#: templates/team/user_add.html:12
-#, fuzzy
+#: templates/team/user_add.html:13
 msgid "Join"
 msgstr "Juntou-se"
 
-#: templates/team/user_add.html:19
-#, fuzzy
+#: templates/team/user_add.html:21
 msgid "Are you sure you want to belong"
 msgstr "Quer ajudar?"
 
-#: templates/team/user_add.html:19
+#: templates/team/user_add.html:21 templates/team/user_add.html:27
 msgid "to this team?"
 msgstr ""
 
-#: templates/team/user_add.html:21
+#: templates/team/user_add.html:23
 msgid "Yes, Join it"
 msgstr ""
 
+#: templates/team/user_add.html:27
+msgid "Are you sure you want to invite"
+msgstr "Quer ajudar?"
+
+#: templates/team/user_add.html:29
+msgid "Yes, Invite it"
+msgstr ""
+
 #: templates/team/user_separate.html:12
-#, fuzzy
 msgid "Separate"
 msgstr "participado"
 
@@ -1669,12 +1714,10 @@ msgid "members"
 msgstr ""
 
 #: templates/team/users.html:17
-#, fuzzy
 msgid "Add Users"
 msgstr "Top 5 dos usuários"
 
 #: templates/team/users.html:42
-#, fuzzy
 msgid "Remove"
 msgstr "Anterior"
 
@@ -1683,7 +1726,6 @@ msgid "The e-mail is required"
 msgstr ""
 
 #: view/account.py:64
-#, fuzzy
 msgid "Password"
 msgstr "a minha nova palavra-chave"
 
@@ -1700,7 +1742,6 @@ msgid "Ooops, Incorrect email/password"
 msgstr "Oops, email/palavra-chave incorreto!"
 
 #: view/account.py:89
-#, fuzzy
 msgid ""
 "Ooops, we didn't find you in the system,                           did "
 "you sign in?"
@@ -1710,7 +1751,7 @@ msgstr "Oops, não foi possível encontrá-lo no sistema,já se registou?"
 #: view/account.py:361 view/account.py:399 view/admin.py:242
 #: view/applications.py:239 view/applications.py:294 view/applications.py:435
 #: view/applications.py:1104 view/applications.py:1155
-#: view/applications.py:1198 view/team.py:320 view/team.py:438
+#: view/applications.py:1198 view/team.py:318 view/team.py:427
 msgid "Please correct the errors"
 msgstr "Por favor corrija os erros"
 
@@ -1723,7 +1764,6 @@ msgid "Full name must be between 3 and 35 characters long"
 msgstr ""
 
 #: view/account.py:122 view/account.py:154
-#, fuzzy
 msgid "Full name"
 msgstr "o meu nome completo"
 
@@ -1736,7 +1776,6 @@ msgid "The user name is already taken"
 msgstr ""
 
 #: view/account.py:127 view/account.py:159
-#, fuzzy
 msgid "User name"
 msgstr "nome de usuário"
 
@@ -1761,12 +1800,10 @@ msgid "Passwords must match"
 msgstr ""
 
 #: view/account.py:143 view/account.py:339 view/account.py:368
-#, fuzzy
 msgid "New Password"
 msgstr "a minha nova palavra-chave"
 
 #: view/account.py:147 view/account.py:342 view/account.py:371
-#, fuzzy
 msgid "Repeat Password"
 msgstr "a minha palavra-chave"
 
@@ -1811,7 +1848,6 @@ msgid "Your profile has been updated!"
 msgstr "O seu perfil foi atualizado!"
 
 #: view/account.py:335
-#, fuzzy
 msgid "Old Password"
 msgstr "a minha nova palavra-chave"
 
@@ -1855,7 +1891,6 @@ msgid "Category added"
 msgstr ""
 
 #: view/admin.py:277
-#, fuzzy
 msgid "Category deleted"
 msgstr "Aplicação eliminada!"
 
@@ -1867,12 +1902,10 @@ msgid ""
 msgstr ""
 
 #: view/admin.py:323
-#, fuzzy
 msgid "Category updated"
 msgstr "Aplicação atualizada!"
 
 #: view/applications.py:54
-#, fuzzy
 msgid "Short Name"
 msgstr "nome de usuário"
 
@@ -1885,7 +1918,6 @@ msgid "You must provide a description."
 msgstr ""
 
 #: view/applications.py:65
-#, fuzzy
 msgid "Icon Link"
 msgstr "Iniciar Sessão"
 
@@ -1894,12 +1926,10 @@ msgid "Allow Anonymous Contributors"
 msgstr ""
 
 #: view/applications.py:70
-#, fuzzy
 msgid "Category"
 msgstr "nome de usuário"
 
 #: view/applications.py:71
-#, fuzzy
 msgid "Long Description"
 msgstr "Descrição Longa"
 
@@ -1915,7 +1945,6 @@ msgid ""
 msgstr ""
 
 #: view/applications.py:90
-#, fuzzy
 msgid "Task IDs"
 msgstr "tarefas"
 
@@ -1939,7 +1968,6 @@ msgid "Depth First"
 msgstr ""
 
 #: view/applications.py:106
-#, fuzzy
 msgid "Random"
 msgstr "e"
 
@@ -1996,7 +2024,6 @@ msgid "Oops! It looks like the file is empty."
 msgstr "Oops! O ficheiro parece estar vazio"
 
 #: view/applications.py:600
-#, fuzzy
 msgid "Oops! It looks like there are no new records to import."
 msgstr "Oops! O ficheiro parece estar vazio"
 
@@ -2005,7 +2032,6 @@ msgid "Tasks imported successfully!"
 msgstr "Tarefas importadas com sucesso!"
 
 #: view/applications.py:604
-#, fuzzy
 msgid "Task imported successfully!"
 msgstr "Tarefas importadas com sucesso!"
 
@@ -2030,7 +2056,6 @@ msgid "Data exported to "
 msgstr ""
 
 #: view/applications.py:970
-#, fuzzy
 msgid ""
 "Oops, the application does not have tasks to                     export, "
 "if you are the owner add some tasks"
@@ -2039,7 +2064,6 @@ msgstr ""
 "adicione algumas tarefas"
 
 #: view/applications.py:976
-#, fuzzy
 msgid ""
 "Oops, there are no Task Runs yet to export, invite                      "
 "some users to participate"
@@ -2052,12 +2076,10 @@ msgid "Redundancy of Tasks updated!"
 msgstr ""
 
 #: view/applications.py:1151
-#, fuzzy
 msgid "Application Task Scheduler updated!"
 msgstr "Aplicação atualizada!"
 
 #: view/applications.py:1195
-#, fuzzy
 msgid "Task priority has been changed"
 msgstr "O seu perfil foi atualizado!"
 
@@ -2082,7 +2104,6 @@ msgid "URL"
 msgstr ""
 
 #: view/importer.py:165
-#, fuzzy
 msgid "You must provide an EpiCollect Plus project name"
 msgstr "A partir de um projeto EpiCollect Plus"
 
@@ -2095,7 +2116,6 @@ msgid "Project Name"
 msgstr ""
 
 #: view/importer.py:171
-#, fuzzy
 msgid "Form name"
 msgstr "nome de usuário"
 
@@ -2108,7 +2128,6 @@ msgid "The team name is already taken"
 msgstr ""
 
 #: view/team.py:61
-#, fuzzy
 msgid "Team Name"
 msgstr "nome de usuário"
 
@@ -2124,87 +2143,100 @@ msgstr ""
 msgid "Private Teams"
 msgstr ""
 
-#: view/team.py:210
+#: view/team.py:209
 msgid "Search name of teams"
 msgstr ""
 
-#: view/team.py:229
+#: view/team.py:227
 msgid "Ooops! We didn't find a team matching your query:"
 msgstr ""
 
-#: view/team.py:269
+#: view/team.py:234 view/team.py:240 view/team.py:246
+msgid "Search Team"
+msgstr "nome de usuário"
+
+#: view/team.py:267
 msgid "Ooops!  We didn't find a user matching your query:"
 msgstr ""
 
-#: view/team.py:276
-#, fuzzy
+#: view/team.py:274
 msgid "Search name of User"
 msgstr "Termos de Utilização"
 
-#: view/team.py:289 view/team.py:295
+#: view/team.py:287 view/team.py:293
 msgid "Search User"
 msgstr ""
 
-#: view/team.py:343
+#: view/team.py:340
 msgid "Team created"
 msgstr ""
 
-#: view/team.py:365
-#, fuzzy
+#: view/team.py:354
 msgid "Search Users"
 msgstr "Procurar Resultados"
 
-#: view/team.py:388
-#, fuzzy
+#: view/team.py:377
 msgid "Delete Team"
 msgstr "Eliminar Tarefas"
 
-#: view/team.py:403
-#, fuzzy
+#: view/team.py:392
 msgid "Team deleted!"
 msgstr "Aplicação eliminada!"
 
-#: view/team.py:423
-#, fuzzy
+#: view/team.py:412
 msgid "Team updated!"
 msgstr "Aplicação atualizada!"
 
-#: view/team.py:429
+#: view/team.py:418
 msgid "Update Team"
 msgstr ""
 
-#: view/team.py:452
+#: view/team.py:441
 msgid "Add User to a Team"
 msgstr ""
 
-#: view/team.py:468 view/team.py:522
+#: view/team.py:457 view/team.py:570
 msgid "This user don\t exists!!!"
 msgstr ""
 
-#: view/team.py:475
+#: view/team.py:464
 msgid "You do not have right to add to this team!!!"
 msgstr ""
 
-#: view/team.py:487
-msgid "This user already is in this team"
+#: view/team.py:476 view/team.py:541
+msgid "This user is already in this team"
 msgstr ""
 
-#: view/team.py:498
+#: view/team.py:488
 msgid "Association to the team created"
 msgstr ""
 
-#: view/team.py:506
+#: view/team.py:531
+msgid "This team doesn't exists"
+msgstr "Desculpe! Esta aplicação já não existe."
+
+#: view/team.py:549
+msgid "Congratulations! You belong to the Public Invitation Only Team"
+msgstr ""
+
+#: view/team.py:556
 msgid "Delete User from a Team"
 msgstr ""
 
-#: view/team.py:529
+#: view/team.py:577
 msgid "You do not have right to separate to this team!!!"
 msgstr ""
 
-#: view/team.py:543
+#: view/team.py:591
 msgid "Association to the team deleted"
 msgstr ""
 
-#~ msgid "Ooops!</strong> We didn't find a team matching your query:"
+#~ msgid "Create new Team"
+#~ msgstr ""
+
+#~ msgid "Not belong to any team"
+#~ msgstr ""
+
+#~ msgid "This user already is in this team"
 #~ msgstr ""
 
