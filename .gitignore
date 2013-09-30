@@ -30,6 +30,7 @@ pybossa/static/js/d3.layout.cloud.js
 pybossa/static/js/d3.v2.min.js
 pybossa/static/js/raphael-min.js
 pybossa/static/openlayers/
+pybossa/static/img/
 .vagrant/
 vagrant_env/
 keys/*
