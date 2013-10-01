@@ -26,7 +26,7 @@ from flaskext.wtf import Form, TextField, PasswordField, validators, \
 
 import pybossa.validator as pb_validator
 import pybossa.model as model
-from flaskext.babel import lazy_gettext, gettext
+from flask.ext.babel import lazy_gettext, gettext
 from sqlalchemy.sql import func, text
 from pybossa.model import User
 from pybossa.core import db, signer, mail, cache, get_locale
@@ -181,6 +181,8 @@ class UpdateProfileForm(Form):
                 lang = gettext("English")
             if locale == 'es':
                 lang = gettext("Spanish")
+            if locale == 'fr':
+                lang = gettext("French")
             choices.append((locale, lang))
         self.locale.choices = choices
 
