@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-09-27 10:46+0200\n"
+"POT-Creation-Date: 2013-10-01 19:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr ""
 
 #: templates/_navbar.html:13 templates/base.html:77
 #: templates/account/applications.html:13 templates/stats/global.html:89
-#: view/account.py:284 view/applications.py:194
+#: view/account.py:283 view/applications.py:212
 msgid "Applications"
 msgstr ""
 
@@ -214,7 +214,8 @@ msgid "The user has not contributed a task yet"
 msgstr ""
 
 #: templates/account/_helpers.html:67 templates/account/index.html:24
-#: templates/home/index.html:80 templates/team/users.html:25
+#: templates/home/index.html:80 templates/home/index1.html:80
+#: templates/team/users.html:25
 msgid "Joined"
 msgstr ""
 
@@ -256,7 +257,7 @@ msgstr ""
 msgid "You have not created an application"
 msgstr ""
 
-#: templates/account/applications.html:29 view/applications.py:232
+#: templates/account/applications.html:29 view/applications.py:250
 msgid "Create an Application"
 msgstr ""
 
@@ -406,11 +407,10 @@ msgstr ""
 msgid "No, do not reset the API key!"
 msgstr ""
 
-#: templates/account/settings.html:12 templates/applications/stats.html:230
-#: templates/applications/stats.html:303 templates/applications/stats.html:304
-#: templates/applications/stats.html:305 templates/applications/stats.html:306
-#: templates/applications/stats.html:307 templates/applications/stats.html:372
-#: view/admin.py:119 view/team.py:297
+#: templates/account/settings.html:12 templates/applications/stats.html:303
+#: templates/applications/stats.html:304 templates/applications/stats.html:305
+#: templates/applications/stats.html:306 templates/applications/stats.html:307
+#: templates/applications/stats.html:372 view/admin.py:119 view/team.py:297
 msgid "User"
 msgstr ""
 
@@ -590,7 +590,8 @@ msgid "Current Users with Admin privileges"
 msgstr ""
 
 #: templates/applications/_helpers.html:36
-#: templates/applications/_helpers.html:237 templates/home/index.html:20
+#: templates/applications/_helpers.html:235 templates/home/index.html:20
+#: templates/home/index1.html:20
 msgid "Info"
 msgstr ""
 
@@ -601,12 +602,12 @@ msgstr ""
 
 #: templates/applications/_helpers.html:38
 #: templates/applications/_helpers.html:64
-#: templates/applications/_helpers.html:214
+#: templates/applications/_helpers.html:212
 #: templates/applications/export.html:18 templates/applications/export.html:23
-#: templates/applications/export.html:38 templates/applications/stats.html:231
-#: templates/applications/stats.html:283 templates/applications/stats.html:373
-#: templates/applications/tasks.html:13
+#: templates/applications/export.html:38 templates/applications/stats.html:283
+#: templates/applications/stats.html:373 templates/applications/tasks.html:13
 #: templates/applications/tasks_browse.html:66 templates/home/index.html:86
+#: templates/home/index1.html:86
 msgid "Tasks"
 msgstr ""
 
@@ -648,12 +649,12 @@ msgstr ""
 
 #: templates/applications/_helpers.html:63
 #: templates/applications/_helpers.html:145
-#: templates/applications/_helpers.html:210
+#: templates/applications/_helpers.html:208
 msgid "Overall progress"
 msgstr ""
 
 #: templates/applications/_helpers.html:63
-#: templates/applications/_helpers.html:210
+#: templates/applications/_helpers.html:208
 #: templates/applications/tasks_browse.html:19
 msgid "completed"
 msgstr ""
@@ -697,7 +698,7 @@ msgstr ""
 msgid "Try it!"
 msgstr ""
 
-#: templates/applications/_helpers.html:212
+#: templates/applications/_helpers.html:210
 msgid "Start Contributing Now!"
 msgstr ""
 
@@ -866,6 +867,17 @@ msgstr ""
 msgid "Distribution of Answers"
 msgstr ""
 
+#: templates/applications/stats.html:230 templates/team/_helpers.html:81
+#: templates/team/_helpers.html:83 templates/team/_helpers.html:116
+#: templates/team/_helpers.html:118 templates/team/_helpers.html:153
+#: templates/team/_helpers.html:155 templates/team/teams.html:62
+msgid "Type"
+msgstr ""
+
+#: templates/applications/stats.html:231
+msgid "Users"
+msgstr ""
+
 #: templates/applications/stats.html:232
 msgid "Percentage"
 msgstr ""
@@ -958,7 +970,7 @@ msgid "Close"
 msgstr ""
 
 #: templates/applications/task_priority.html:14
-#: templates/applications/task_settings.html:22 view/applications.py:1163
+#: templates/applications/task_settings.html:22 view/applications.py:1207
 msgid "Task Priority"
 msgstr ""
 
@@ -968,7 +980,7 @@ msgstr ""
 
 #: templates/applications/task_scheduler.html:14
 #: templates/applications/task_settings.html:17 view/applications.py:102
-#: view/applications.py:1120
+#: view/applications.py:1163
 msgid "Task Scheduler"
 msgstr ""
 
@@ -1005,7 +1017,7 @@ msgid "Change the redundancy level for the tasks"
 msgstr ""
 
 #: templates/applications/task_settings.html:36 view/applications.py:81
-#: view/applications.py:1087
+#: view/applications.py:1130
 msgid "Redundancy"
 msgstr ""
 
@@ -1029,7 +1041,7 @@ msgid "Export tasks to JSON, CSV or a CKAN server"
 msgstr ""
 
 #: templates/applications/tasks.html:27 templates/applications/tasks.html:59
-#: view/applications.py:842
+#: view/applications.py:885
 msgid "Export"
 msgstr ""
 
@@ -1303,47 +1315,47 @@ msgstr ""
 msgid "Things computers can't do"
 msgstr ""
 
-#: templates/home/index.html:35
+#: templates/home/index.html:35 templates/home/index1.html:35
 msgid "Get Started"
 msgstr ""
 
-#: templates/home/index.html:36
+#: templates/home/index.html:36 templates/home/index1.html:36
 msgid "It's really simple to start contributing."
 msgstr ""
 
-#: templates/home/index.html:39
+#: templates/home/index.html:39 templates/home/index1.html:39
 msgid " Start Contributing"
 msgstr ""
 
-#: templates/home/index.html:39
+#: templates/home/index.html:39 templates/home/index1.html:39
 msgid "Create an App"
 msgstr ""
 
-#: templates/home/index.html:44
+#: templates/home/index.html:44 templates/home/index1.html:44
 msgid "Most Active Applications"
 msgstr ""
 
-#: templates/home/index.html:56
+#: templates/home/index.html:56 templates/home/index1.html:56
 msgid "Start"
 msgstr ""
 
-#: templates/home/index.html:64
+#: templates/home/index.html:64 templates/home/index1.html:64
 msgid "Your application"
 msgstr ""
 
-#: templates/home/index.html:65
+#: templates/home/index.html:65 templates/home/index1.html:65
 msgid "could be here!"
 msgstr ""
 
-#: templates/home/index.html:66
+#: templates/home/index.html:66 templates/home/index1.html:66
 msgid "Create an app"
 msgstr ""
 
-#: templates/home/index.html:75
+#: templates/home/index.html:75 templates/home/index1.html:75
 msgid "Most Active Volunteers"
 msgstr ""
 
-#: templates/home/index.html:82
+#: templates/home/index.html:82 templates/home/index1.html:82
 msgid "Submitted Tasks"
 msgstr ""
 
@@ -1461,13 +1473,6 @@ msgstr ""
 msgid "Members"
 msgstr ""
 
-#: templates/team/_helpers.html:81 templates/team/_helpers.html:83
-#: templates/team/_helpers.html:116 templates/team/_helpers.html:118
-#: templates/team/_helpers.html:153 templates/team/_helpers.html:155
-#: templates/team/teams.html:62
-msgid "Type"
-msgstr ""
-
 #: templates/team/_helpers.html:81 templates/team/_helpers.html:116
 #: templates/team/_helpers.html:153 templates/team/teams.html:62
 #: view/team.py:71
@@ -1496,6 +1501,10 @@ msgstr ""
 
 #: templates/team/delete.html:19
 msgid "Are you sure you want to delete this team?"
+msgstr ""
+
+#: templates/team/delete.html:21
+msgid "Yes, delete it"
 msgstr ""
 
 #: templates/team/delete.html:28 templates/team/settings.html:35
@@ -1703,11 +1712,11 @@ msgid ""
 "you sign in?"
 msgstr ""
 
-#: view/account.py:94 view/account.py:208 view/account.py:328
-#: view/account.py:361 view/account.py:399 view/admin.py:242
-#: view/applications.py:239 view/applications.py:294 view/applications.py:435
-#: view/applications.py:1104 view/applications.py:1155
-#: view/applications.py:1198 view/team.py:318 view/team.py:427
+#: view/account.py:94 view/account.py:207 view/account.py:327
+#: view/account.py:360 view/account.py:398 view/admin.py:242
+#: view/applications.py:257 view/applications.py:314 view/applications.py:459
+#: view/applications.py:1147 view/applications.py:1199
+#: view/applications.py:1243 view/team.py:318 view/team.py:427
 msgid "Please correct the errors"
 msgstr ""
 
@@ -1735,7 +1744,7 @@ msgstr ""
 msgid "User name"
 msgstr ""
 
-#: view/account.py:133 view/account.py:165 view/account.py:404
+#: view/account.py:133 view/account.py:165 view/account.py:403
 msgid "Email must be between 3 and 35 characters long"
 msgstr ""
 
@@ -1743,23 +1752,23 @@ msgstr ""
 msgid "Email is already taken"
 msgstr ""
 
-#: view/account.py:135 view/account.py:167 view/account.py:405
+#: view/account.py:135 view/account.py:167 view/account.py:404
 msgid "Email Address"
 msgstr ""
 
-#: view/account.py:141 view/account.py:337 view/account.py:366
+#: view/account.py:141 view/account.py:336 view/account.py:365
 msgid "Password cannot be empty"
 msgstr ""
 
-#: view/account.py:142 view/account.py:338 view/account.py:367
+#: view/account.py:142 view/account.py:337 view/account.py:366
 msgid "Passwords must match"
 msgstr ""
 
-#: view/account.py:143 view/account.py:339 view/account.py:368
+#: view/account.py:143 view/account.py:338 view/account.py:367
 msgid "New Password"
 msgstr ""
 
-#: view/account.py:147 view/account.py:342 view/account.py:371
+#: view/account.py:147 view/account.py:341 view/account.py:370
 msgid "Repeat Password"
 msgstr ""
 
@@ -1787,53 +1796,53 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#: view/account.py:205
+#: view/account.py:204
 msgid "Thanks for signing-up"
 msgstr ""
 
-#: view/account.py:210
+#: view/account.py:209
 msgid "Register"
 msgstr ""
 
-#: view/account.py:252
+#: view/account.py:251
 msgid "Profile"
 msgstr ""
 
-#: view/account.py:325
+#: view/account.py:324
 msgid "Your profile has been updated!"
 msgstr ""
 
-#: view/account.py:335
+#: view/account.py:334
 msgid "Old Password"
 msgstr ""
 
-#: view/account.py:355
+#: view/account.py:354
 msgid "Yay, you changed your password succesfully!"
 msgstr ""
 
-#: view/account.py:358
+#: view/account.py:357
 msgid "Your current password doesn't match the one in our records"
 msgstr ""
 
-#: view/account.py:396
+#: view/account.py:395
 msgid "You reset your password successfully!"
 msgstr ""
 
-#: view/account.py:442
+#: view/account.py:441
 msgid "We've send you email with account recovery instructions!"
 msgstr ""
 
-#: view/account.py:445
+#: view/account.py:444
 msgid ""
 "We don't have this email in our records. You may have signed up with a "
 "different email or used Twitter, Facebook, or Google to sign-in"
 msgstr ""
 
-#: view/account.py:449
+#: view/account.py:448
 msgid "Something went wrong, please correct the errors on the form"
 msgstr ""
 
-#: view/account.py:467
+#: view/account.py:466
 msgid "New API-KEY generated"
 msgstr ""
 
@@ -1922,107 +1931,107 @@ msgstr ""
 msgid "Random"
 msgstr ""
 
-#: view/applications.py:261
+#: view/applications.py:279
 msgid "Application created!"
 msgstr ""
 
-#: view/applications.py:264
+#: view/applications.py:282
 msgid "You can check the "
 msgstr ""
 
-#: view/applications.py:266
+#: view/applications.py:284
 msgid "Guide and Documentation"
 msgstr ""
 
-#: view/applications.py:268
+#: view/applications.py:286
 msgid "for adding tasks, a thumbnail, using PyBossa.JS, etc."
 msgstr ""
 
-#: view/applications.py:289
+#: view/applications.py:309
 msgid "Task presenter added!"
 msgstr ""
 
-#: view/applications.py:304
+#: view/applications.py:324
 msgid "<strong>Note</strong> You will need to upload the tasks using the"
 msgstr ""
 
-#: view/applications.py:306
+#: view/applications.py:326
 msgid "CSV importer"
 msgstr ""
 
-#: view/applications.py:307
+#: view/applications.py:327
 msgid ""
 " or download the app bundle and run the <strong>createTasks.py</strong> "
 "script in your computer"
 msgstr ""
 
-#: view/applications.py:360
+#: view/applications.py:384
 msgid "Application deleted!"
 msgstr ""
 
-#: view/applications.py:405
+#: view/applications.py:429
 msgid "Application updated!"
 msgstr ""
 
-#: view/applications.py:526
+#: view/applications.py:556
 msgid "Importing tasks, this may take a while, wait..."
 msgstr ""
 
-#: view/applications.py:598
+#: view/applications.py:628
 msgid "Oops! It looks like the file is empty."
 msgstr ""
 
-#: view/applications.py:600
+#: view/applications.py:630
 msgid "Oops! It looks like there are no new records to import."
 msgstr ""
 
-#: view/applications.py:602
+#: view/applications.py:632
 msgid "Tasks imported successfully!"
 msgstr ""
 
-#: view/applications.py:604
+#: view/applications.py:634
 msgid "Task imported successfully!"
 msgstr ""
 
-#: view/applications.py:638
+#: view/applications.py:672
 msgid ""
 "Ooops! You are an anonymous user and will not get any credit for your "
 "contributions."
 msgstr ""
 
-#: view/applications.py:831
+#: view/applications.py:870
 msgid "All the tasks and associated task runs have been deleted"
 msgstr ""
 
-#: view/applications.py:843
+#: view/applications.py:886
 msgid "Exporting data..., this may take a while"
 msgstr ""
 
-#: view/applications.py:909
+#: view/applications.py:952
 msgid "Data exported to "
 msgstr ""
 
-#: view/applications.py:970
+#: view/applications.py:1013
 msgid ""
 "Oops, the application does not have tasks to                     export, "
 "if you are the owner add some tasks"
 msgstr ""
 
-#: view/applications.py:976
+#: view/applications.py:1019
 msgid ""
 "Oops, there are no Task Runs yet to export, invite                      "
 "some users to participate"
 msgstr ""
 
-#: view/applications.py:1100
+#: view/applications.py:1143
 msgid "Redundancy of Tasks updated!"
 msgstr ""
 
-#: view/applications.py:1151
+#: view/applications.py:1195
 msgid "Application Task Scheduler updated!"
 msgstr ""
 
-#: view/applications.py:1195
+#: view/applications.py:1240
 msgid "Task priority has been changed"
 msgstr ""
 
@@ -2138,7 +2147,7 @@ msgstr ""
 msgid "Add User to a Team"
 msgstr ""
 
-#: view/team.py:457 view/team.py:570
+#: view/team.py:457 view/team.py:574
 msgid "This user don\t exists!!!"
 msgstr ""
 
@@ -2146,31 +2155,31 @@ msgstr ""
 msgid "You do not have right to add to this team!!!"
 msgstr ""
 
-#: view/team.py:476 view/team.py:541
+#: view/team.py:477 view/team.py:542
 msgid "This user is already in this team"
 msgstr ""
 
-#: view/team.py:488
+#: view/team.py:489
 msgid "Association to the team created"
 msgstr ""
 
-#: view/team.py:531
+#: view/team.py:532
 msgid "This team doesn't exists"
 msgstr ""
 
-#: view/team.py:549
+#: view/team.py:552
 msgid "Congratulations! You belong to the Public Invitation Only Team"
 msgstr ""
 
-#: view/team.py:556
+#: view/team.py:560
 msgid "Delete User from a Team"
 msgstr ""
 
-#: view/team.py:577
+#: view/team.py:581
 msgid "You do not have right to separate to this team!!!"
 msgstr ""
 
-#: view/team.py:591
+#: view/team.py:596
 msgid "Association to the team deleted"
 msgstr ""
 
