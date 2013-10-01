@@ -64,7 +64,7 @@ class TestTeams(web.Helper):
                             follow_redirects=True)
 
     def test_00_team_index_anonymous(self):
-        ''' Test 00 TEAM index page works as anonymous user'''
+        ''' Test TEAM index page works as anonymous user'''
         res = self.app.get("/team", follow_redirects=True)
 
         err_msg = ("The anonymous user should not be able to access"
@@ -72,7 +72,7 @@ class TestTeams(web.Helper):
         assert "Please sign in to access this page" in res.data, err_msg
 
     def test_01_team_index_admin(self):
-        ''' Test 01 TEAM index page works as admin user'''
+        ''' Test TEAM index page works as admin user'''
         self.register()
         res = self.app.get("/team", follow_redirects=True)
 
@@ -83,24 +83,26 @@ class TestTeams(web.Helper):
         self.signout
 
     def test_02_team_index_authenticated(self):
-        ''' Test 02 TEAM index page works as authenticated user'''
+        ''' Test TEAM index page works as authenticated user'''
         self.register()
         self.signout()
         self.register(username="tester2",
                 email="tester2@tester.com",
                 password="tester")
         res = self.app.get("/team", follow_redirects=True)
-        err_msg = ("There would be a team page with at least "
-                "a button My Teams:  %s" % res.data)
+        err_msg = ("There would be a team page with the label"
+                "No availabel teams:  %s" % res.data)
+	assert "No available teams" in res.data, err_msg
         self.signout()
 
     def test_03_team_add_admin(self):
-        ''' Test 03 TEAM create a team as admin'''
+        ''' Test TEAM create a team as admin'''
         self.register()
 
         res = self.app.get("/team/myteams", follow_redirects=True)
-        err_msg = "There should be a button for Create Team"
-        assert "Create new Team" in res.data, err_msg
+        err_msg = ("There would be a team page with the button"
+                "to create a new team:  %s" % res.data)
+	assert "create a new team" in res.data, err_msg
 
         res = self.new_team(name="TestTeam")
         assert "Team created" in res.data, res
@@ -110,29 +112,28 @@ class TestTeams(web.Helper):
         assert team.name == "TestTeam", "Team does not created"
 
     def test_04_team_add_authenticated(self):
-        ''' Test 04 TEAM create a team as authenticated user'''
+        ''' Test TEAM create a team as authenticated user'''
         self.register()
         self.signout()
         self.register(username="tester2",
                 email="tester2@tester.com",
                 password="tester")
-        res = self.app.get("/team/myteams", follow_redirects=True)
-        err_msg = "There should be a button for Create Team"
-        assert "Create new Team" in res.data, err_msg
-
+        res = self.app.get("/team", follow_redirects=True)
+        err_msg = ("There would be a team page with the label"
+                "No availabel teams:  %s" % res.data)
         res = self.new_team(name="TestTeam")
         assert "Team created" in res.data, res
         self.signout()
 
     def test_05_team_add_anonymous(self):
-        ''' Test 05 TEAM create a team as anonymous user'''
+        ''' Test TEAM create a team as anonymous user'''
         res = self.app.get("/team/myteams", follow_redirects=True)
         err_msg = ("The anonymous user should not be able to access"
                   "but the returned status is %s" % res.data)
         assert "Please sign in to access this page" in res.data, err_msg
 
     def test_06_team_add_public(self):
-        ''' Test 06 TEAM create a team check'''
+        ''' Test TEAM create a team check'''
         self.register()
 
         res = self.new_team(name='')
@@ -159,7 +160,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_07_team_public_view_anonymous(self):
-        ''' Test 07 TEAM is an anonymous user can see a public team
+        ''' Test TEAM is an anonymous user can see a public team
         All people can see the public profile of a team
         wiht /team/<name>
         '''
@@ -178,7 +179,7 @@ class TestTeams(web.Helper):
         #assert "%s" % _teamname  in res.data, err_msg
 
     def test_08_team_public_view_authenticated(self):
-        ''' Test 08 TEAM is an authenticated user can see a public team
+        ''' Test TEAM is an authenticated user can see a public team
         in team
         '''
         _teamname = "TeamTest"
@@ -196,7 +197,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_09_team_add_public_invitation_only(self):
-        ''' Test 09 TEAM create a public_invitation_only '''
+        ''' Test TEAM create a public_invitation_only '''
         self.register()
         self.new_team(name="TestPublicInvitation",public=False)
 
@@ -205,7 +206,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_10_team_public_invitation_only_view_anonymous(self):
-        ''' Test 10 TEAM is an anonymous user can see a public invitation
+        ''' Test TEAM is an anonymous user can see a public invitation
         only team
         '''
         _teamname = "TeamTest"
@@ -218,7 +219,7 @@ class TestTeams(web.Helper):
         assert "Please sign in to access this page" in res.data, err_msg
 
     def test_11_team_public_invitation_only_view_authenticated(self):
-        ''' Test 11 TEAM is an authenticated user can see a public invitation only
+        ''' Test TEAM is an authenticated user can see a public invitation only
         team
         '''
         _teamname = "TeamTest"
@@ -236,7 +237,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_12_team_public_invitation_only_view_admin(self):
-        ''' Test 12 TEAM is an admin  can see a public invitation only team '''
+        ''' Test TEAM is an admin  can see a public invitation only team '''
         _teamname = "TeamTest"
         self.register()
         self.signout()
@@ -260,7 +261,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_13_team_manage(self):
-        ''' Test 13 TEAM update and delete '''
+        ''' Test TEAM update and delete '''
         self.register()
         self.new_team()
 
@@ -273,7 +274,7 @@ class TestTeams(web.Helper):
         assert "Team deleted!" in res.data, err_msg
 
     def test_14_team_manage_as_anonymous(self):
-        ''' Test 14 TEAM update and delete as anonymous user'''
+        ''' Test TEAM update and delete as anonymous user'''
         self.register()
         self.new_team()
         self.signout()
@@ -287,7 +288,7 @@ class TestTeams(web.Helper):
         assert "Please sign in to access this page" in res.data, err_msg
 
     def test_15_team_public_manage_as_authenticated(self):
-        ''' Test 15 TEAM update and delete created by other authenticated user'''
+        ''' Test TEAM update and delete created by other authenticated user'''
         self.register()
         self.signout()
 
@@ -313,7 +314,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_16_team_public_manage_as_admin(self):
-        ''' Test 16 TEAM update and delete  as admin'''
+        ''' Test TEAM update and delete  as admin'''
         self.register()
         self.signout()
 
@@ -334,7 +335,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_17_team_public_invitation_only_manage_as_admin(self):
-        ''' Test 17 TEAM public invitation only update and delete as admin'''
+        ''' Test TEAM public invitation only update and delete as admin'''
         self.register()
         self.signout()
 
@@ -355,7 +356,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_18_team_public_manage_non_existent(self):
-        ''' Test 18 TEAM try to update a non existent team '''
+        ''' Test TEAM try to update a non existent team '''
         self.register()
 
         res =  self.update_team()
@@ -368,7 +369,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_19_team_settings_page(self):
-        ''' Test 19 Team buttons '''
+        ''' Test Team buttons '''
         _name = "TeamTest"
 
         self.register()
@@ -384,7 +385,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_20_team_settings_as_anonymous(self):
-        ''' Test 20 TEAM update and delete as anonymous user'''
+        ''' Test TEAM update and delete as anonymous user'''
         _name = "TeamTest"
         self.register()
         self.new_team()
@@ -396,7 +397,7 @@ class TestTeams(web.Helper):
         assert "Please sign in to access this page" in res.data, err_msg
 
     def test_21_team_public_settings_page_as_authenticated(self):
-        ''' Test 21 Team buttons for authenticated users'''
+        ''' Test Team buttons for authenticated users'''
         _name = "TeamTest"
 
         self.register()
@@ -423,7 +424,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_22_team_public_settings_page_as_admin(self):
-        ''' Test 22 Team public buttons for admins'''
+        ''' Test Team public buttons for admins'''
         _name = "TeamTest"
         self.register()
         self.signout()
@@ -446,7 +447,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_23_team_public_invitation_only_settings_page_as_admin(self):
-        ''' Test 23 Team public invitation only buttons for admins'''
+        ''' Test Team public invitation only buttons for admins'''
         _name = "TeamTest"
         self.register()
         self.signout()
@@ -469,7 +470,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_24_team_public_join_separate_as_anonymous(self):
-        ''' Test 24 Team public join separate as anonymous '''
+        ''' Test Team public join separate as anonymous '''
         _name = "TeamTest"
         self.register()
         self.new_team(name=_name)
@@ -486,7 +487,7 @@ class TestTeams(web.Helper):
         assert "Please sign in to access this page" in res.data, err_msg
 
     def test_25_team_public_join_separate_as_authenticated(self):
-        ''' Test 25 Team public join separate as authenticated user  '''
+        ''' Test Team public join separate as authenticated user  '''
         _name = "TeamTest"
         _name = "TeamTest"
         self.register()
@@ -499,17 +500,17 @@ class TestTeams(web.Helper):
 
         url = '/team/%s/join' % _name
         res = self.app.post(url, follow_redirects=True)
-        err_msg = "You can not join to this team"
+        err_msg = "You can not join to public team"
         assert "Association to the team created"  in res.data, err_msg
 
         url = '/team/%s/separate' % _name
         res = self.app.post(url, follow_redirects=True)
-        err_msg = "You can not join to this team"
+        err_msg = "You can not separate to public team"
         assert "Association to the team deleted"  in res.data, err_msg
         self.signout()
 
     def test_26_team_public_invi_only_join_separate_as_authenticated(self):
-        ''' Test 26 Team public invitation only join separate as
+        ''' Test Team public invitation only join separate as
         authenticated user
         '''
         _name = "TeamTest"
@@ -533,7 +534,7 @@ class TestTeams(web.Helper):
         self.signout()
 
     def test_27_team_public_invi_only_join_separate_as_admin(self):
-        ''' Test 27 Team public invitation only join separate as admin '''
+        ''' Test Team public invitation only join separate as admin '''
         _name = "TeamTest"
         self.register()
         self.signout()
@@ -551,14 +552,14 @@ class TestTeams(web.Helper):
         err_msg = "You can not join to this team"
         assert "Association to the team created"  in res.data, err_msg
 
-        url = '/team/%s/separate' % _name
+        '''url = '/team/%s/separate' % _name
         res = self.app.post(url, follow_redirects=True)
         err_msg = "You can not join to this team"
         assert "Association to the team deleted"  in res.data, err_msg
-        self.signout()
+        self.signout()'''
 
     def test_28_team_public_join_separate_manage_outder(self):
-        ''' Test 28 Team public manage outer '''
+        ''' Test Team public manage outer '''
         _name = "TeamTest"
         # Admin
         self.register()
