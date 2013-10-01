@@ -334,9 +334,9 @@ def new():
         user2team = User2Team( user_id = current_user.id,
                           team_id = team.id)
 
+        cached_teams.reset()
         db.session.add(user2team)
         db.session.commit()
-
         flash(gettext('Team created'), 'success')
         return redirect(url_for('.detail', name=team.name))
 
@@ -406,9 +406,9 @@ def update(name):
             public=form.public.data
             )
         cached_teams.clean(new_team.id)
+        cached_teams.reset()
         db.session.merge(new_team)
         db.session.commit()
-
         flash(gettext('Team updated!'), 'success')
         return redirect(url_for('.detail',name=new_team.name))
 
@@ -464,11 +464,12 @@ def user_add(name,user=None):
                 flash(gettext('You do not have right to add to this team!!!'), 'error')
                 return redirect(url_for('team.myteams',  name=team.name ))
     else:
-        user_id = current_user.id
+	user_search= current_user
+        '''user_id = current_user.id'''
 
     ''' Search relationship '''
     user2team = db.session.query(User2Team)\
-                .filter(User2Team.user_id == user_id )\
+                .filter(User2Team.user_id == user_search.id )\
                 .filter(User2Team.team_id == team.id )\
                 .first()
 
@@ -479,10 +480,10 @@ def user_add(name,user=None):
     else:
         if team.public == True:
             user2team = User2Team(
-                        user_id = user_id,
+                        user_id = user_search.id,
                         team_id = team.id
                         )
-
+	    cached_teams.reset()	
             db.session.add(user2team)
             db.session.commit()
             flash(gettext('Association to the team created'), 'success')
@@ -543,12 +544,15 @@ def join_private_team():
     else:
         user2team = User2Team(user_id = current_user.id,
                               team_id = team.id
+
                               )
+	cached_teams.reset()
         db.session.add(user2team)
         db.session.commit()
         flash(gettext('Congratulations! You belong to the Public Invitation Only Team'), 'sucess')
         return redirect(url_for('team.users',  name=team.name ))
 
+@blueprint.route('/<name>/separate', methods=['GET', 'POST'])
 @blueprint.route('/<name>/separate/<user>', methods=['GET', 'POST'])
 @login_required
 def user_delete(name,user=None):
@@ -586,6 +590,7 @@ def user_delete(name,user=None):
                                     .first()
 
     if user2team:
+	cached_teams.reset()
         db.session.delete(user2team)
         db.session.commit()
         flash(gettext('Association to the team deleted'), 'success')
