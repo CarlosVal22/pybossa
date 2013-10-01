@@ -34,7 +34,6 @@ blueprint = Blueprint('api', __name__)
 
 cors_headers = ['Content-Type', 'Authorization']
 
-
 @blueprint.route('/')
 @crossdomain(origin='*', headers=cors_headers)
 def index():
@@ -287,7 +286,6 @@ register_api(CategoryAPI, 'api_category', '/category', pk='id', pk_type='int')
 register_api(TaskAPI, 'api_task', '/task', pk='id', pk_type='int')
 register_api(TaskRunAPI, 'api_taskrun', '/taskrun', pk='id', pk_type='int')
 
-
 @jsonpify
 @blueprint.route('/app/<app_id>/newtask')
 @crossdomain(origin='*', headers=cors_headers)
@@ -311,6 +309,16 @@ def new_task(app_id):
     else:
         return res
 
+@jsonpify
+@blueprint.route('/settings')
+@crossdomain(origin='*', headers=cors_headers)
+def settings(app_id=None, short_name=None):
+    if current_user.is_anonymous():
+        tmp = dict( language = None )
+    else:
+        tmp = dict( language = current_user.locale )
+
+    return Response( json.dumps(tmp), mimetype="application/json" )
 
 @jsonpify
 @blueprint.route('/app/<short_name>/userprogress')
@@ -352,6 +360,20 @@ def user_progress(app_id=None, short_name=None):
     else:
         return abort(404)
 
+
+# changed by thyago.silva@ccc.ufcg.edu.br
+@jsonpify
+@blueprint.route('/app/<short_name>/currentuserid')
+@blueprint.route('/app/<int:app_id>/currentuserid')
+@crossdomain(origin="*", headers=cors_headers)
+def currentuserid(app_id=None, short_name=None):
+    """Return the current user id"""
+    if current_user.is_anonymous():
+        tmp = dict( current_usr_id = None )
+    else:
+        tmp = dict( current_usr_id = current_user.id )
+    
+    return Response( json.dumps(tmp), mimetype="application/json" )
 
 @jsonpify
 @blueprint.route('/vmcp', methods=['GET'])

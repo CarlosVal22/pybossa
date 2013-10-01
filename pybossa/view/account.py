@@ -183,9 +183,10 @@ class UpdateProfileForm(Form):
                 lang = gettext("Spanish")
             if locale == 'fr':
                 lang = gettext("French")
+            if locale == 'pt':
+                lang = gettext("Portuguese")
             choices.append((locale, lang))
         self.locale.choices = choices
-
 
 @blueprint.route('/register', methods=['GET', 'POST'])
 def register():

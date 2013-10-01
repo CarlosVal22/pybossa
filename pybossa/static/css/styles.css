@@ -274,11 +274,28 @@ html {
 }
 body > footer {
   border-top: 1px solid #686868;
+  margin-top: 10px;
 }
 body > footer .container {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+body > footer ul {
+    color: rgb(205, 205, 205);
+    list-style: none;
+}
+
+body > footer li > a {
+    color: rgb(205, 205, 205);
+}
+
+body > footer li > a:hover {
+    color: rgb(205, 205, 205);
+}
+
+
+
 /* Home Page */
 /* ========= */
 .banner > .row .span4 {

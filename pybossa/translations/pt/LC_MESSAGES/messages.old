@@ -1,0 +1,148 @@
+# Portuguese translations for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-09-12 13:12+0200\n"
+"PO-Revision-Date: 2013-08-07 15:01+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: validator.py:28
+msgid "This item already exists"
+msgstr ""
+
+#: validator.py:49
+#, python-format
+msgid "%sand space symbols are forbidden"
+msgstr ""
+
+#: validator.py:65
+msgid "Only comma separated values are allowed, no spaces"
+msgstr ""
+
+#: web.py:132
+msgid ""
+"Please update your e-mail address in your profile page, right now it is "
+"empty!"
+msgstr ""
+
+#: templates/_navbar.html:12 templates/account/_helpers.html:14
+#: templates/account/index.html:17
+msgid "Community"
+msgstr "Comunidade"
+
+#: templates/_navbar.html:13 templates/base.html:77
+#: templates/account/applications.html:13 templates/stats/global.html:89
+#: view/account.py:284 view/applications.py:194
+msgid "Applications"
+msgstr "Aplicações"
+
+#: templates/_navbar.html:14
+msgid "Create"
+msgstr "Criar"
+
+#: templates/_navbar.html:15 templates/home/_about.html:3
+msgid "About"
+msgstr "Sobre"
+
+#: templates/_navbar.html:22 templates/account/_helpers.html:3
+msgid "My Profile"
+msgstr "O Meu Perfil"
+
+#: templates/_navbar.html:23 templates/account/_helpers.html:4
+msgid "My Applications"
+msgstr "As Minhas Aplicações"
+
+#: templates/_navbar.html:24 templates/account/_helpers.html:8
+msgid "My Settings"
+msgstr "As Minhas Definições"
+
+#: templates/_navbar.html:25 templates/team/_helpers.html:37 view/team.py:141
+msgid "My Teams"
+msgstr ""
+
+#: templates/_navbar.html:28 templates/account/_helpers.html:6
+#: templates/admin/applications.html:13 templates/admin/categories.html:13
+#: templates/admin/del_category.html:13 templates/admin/update_category.html:13
+#: templates/admin/users.html:14
+msgid "Admin Site"
+msgstr "Administrar o Site"
+
+#: templates/_navbar.html:31
+msgid "Sign Out"
+msgstr "Sair"
+
+#: templates/_navbar.html:39 templates/account/signin.html:45
+msgid "Sign in"
+msgstr "Iniciar Sessão"
+
+#: templates/base.html:65
+msgid "Resources"
+msgstr "Recursos"
+
+#: templates/base.html:66
+msgid "Docs"
+msgstr "Documentos"
+
+#: templates/base.html:68
+msgid "Terms of Use"
+msgstr "Termos de Utilização"
+
+#: templates/base.html:69
+msgid "Cookies Policy"
+msgstr ""
+
+#: templates/base.html:70
+#, 
+msgid "Team updated!"
+msgstr "Aplicação atualizada!"
+
+#: view/team.py:429
+msgid "Update Team"
+msgstr ""
+
+#: view/team.py:452
+msgid "Add User to a Team"
+msgstr ""
+
+#: view/team.py:468 view/team.py:522
+msgid "This user don\t exists!!!"
+msgstr ""
+
+#: view/team.py:475
+msgid "You do not have right to add to this team!!!"
+msgstr ""
+
+#: view/team.py:487
+msgid "This user already is in this team"
+msgstr ""
+
+#: view/team.py:498
+msgid "Association to the team created"
+msgstr ""
+
+#: view/team.py:506
+msgid "Delete User from a Team"
+msgstr ""
+
+#: view/team.py:529
+msgid "You do not have right to separate to this team!!!"
+msgstr ""
+
+#: view/team.py:543
+msgid "Association to the team deleted"
+msgstr ""
+
+#~ msgid "Ooops!</strong> We didn't find a team matching your query:"
+#~ msgstr ""
+
