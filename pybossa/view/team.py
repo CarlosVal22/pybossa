@@ -104,16 +104,10 @@ def public_profile(name):
     team = cached_teams.get_team_summary(name)
 
     if team:
-        try:
-            cached_teams.get_team(name)
-            manage = True
-        except HTTPException:
-            manage = False
-
         return render_template('/team/public_profile.html',
                                 title='Public Profile',
                                 team=team,
-                                manage=manage)
+                                manage=True)
     else:
         abort(404)
 
