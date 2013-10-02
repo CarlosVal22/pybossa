@@ -328,7 +328,6 @@ def new():
         user2team = User2Team( user_id = current_user.id,
                           team_id = team.id)
 
-        cached_teams.reset()
         db.session.add(user2team)
         db.session.commit()
         flash(gettext('Team created'), 'success')
@@ -399,8 +398,7 @@ def update(name):
             description=form.description.data,
             public=form.public.data
             )
-        cached_teams.clean(new_team.id)
-        cached_teams.reset()
+        cached_teams.delete_team(new_team.id)
         db.session.merge(new_team)
         db.session.commit()
         flash(gettext('Team updated!'), 'success')
@@ -473,11 +471,11 @@ def user_add(name,user=None):
 
     else:
         if team.public == True:
+            cached_teams.delete_team(team.id)
             user2team = User2Team(
                         user_id = user_search.id,
                         team_id = team.id
                         )
-	    cached_teams.reset()	
             db.session.add(user2team)
             db.session.commit()
             flash(gettext('Association to the team created'), 'success')
@@ -538,9 +536,8 @@ def join_private_team():
     else:
         user2team = User2Team(user_id = current_user.id,
                               team_id = team.id
-
                               )
-	cached_teams.reset()
+        cached_teams.delete_team(team_id)
         db.session.add(user2team)
         db.session.commit()
         flash(gettext('Congratulations! You belong to the Public Invitation Only Team'), 'sucess')
@@ -584,7 +581,7 @@ def user_delete(name,user=None):
                                     .first()
 
     if user2team:
-	cached_teams.reset()
+        cached_teams.delete_team(team.id)
         db.session.delete(user2team)
         db.session.commit()
         flash(gettext('Association to the team deleted'), 'success')

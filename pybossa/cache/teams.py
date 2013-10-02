@@ -151,7 +151,6 @@ def get_team(name):
                     User2Team.user_id == current_user.id))\
                     .first_or_404()
 
-
 @cache.memoize(timeout=50)
 def user_belong_team(team_id):
     ''' Is a user belong to a team'''
@@ -260,6 +259,10 @@ def reset():
     cache.delete_memoized(get_signed_teams)
     cache.delete_memoized(get_private_teams)
     cache.delete_memoized(get_team_summary)
+
+def delete_team(team_id):
+    ''' Reset team values in cache '''
+    cache.delete_memoized(get_team, team_id)
 
 def clean(team_id):
     ''' Clean all items in cache '''
