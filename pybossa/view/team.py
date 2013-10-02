@@ -79,9 +79,11 @@ def index(page):
                       True, False, gettext('Public Teams')
                      )
 
+
+
+
 @blueprint.route('/teams', defaults={'page': 1})
 @blueprint.route('/teams/page/<int:page>')
-@login_required
 def teams(page):
     per_page = 24
     count = db.session.query(model.Team).count()
@@ -338,7 +340,6 @@ def new():
         return redirect(url_for('.myteams'))
 
 @blueprint.route('/<name>/users')
-@login_required
 def users(name):
     ''' Add new user to a team '''
     cached_teams.clean(1)
