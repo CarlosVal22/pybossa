@@ -73,7 +73,6 @@ def get_public_data(page=1, per_page=5):
 
     return teams, count
 
-@cache.cached(key_prefix="teams_get_summary")
 @cache.memoize(timeout=50)
 def get_team_summary(name):
     ''' Get TEAM data '''
@@ -254,13 +253,13 @@ def reset():
     cache.delete('teams_get_public_count')
     cache.delete('teams_get_count')
     cache.delete('teams_get_public_data')
-    cache.delete('teams_get_summary')
     cache.delete_memoized(get_number_members)
     cache.delete_memoized(get_rank)
     cache.delete_memoized(get_team)
     cache.delete_memoized(user_belong_team)
     cache.delete_memoized(get_signed_teams)
     cache.delete_memoized(get_private_teams)
+    cache.delete_memoized(get_team_summary)
 
 def clean(team_id):
     ''' Clean all items in cache '''
