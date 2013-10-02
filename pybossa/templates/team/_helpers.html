@@ -162,6 +162,8 @@
         {% else %}
             <h2><i class="icon-trophy"></i> {{ _('Rank') }}: <small>{{ _('The team  has not contributed a task yet') }}</small></h2>
         {% endif %}
+
+        <a id="members" class="btn" href="{{ url_for('team.users', name = team.name) }}"><i class="icon-group icon-white"></i> {{ _('Members') }}</a>
     </div>
 </div>
 {% endmacro %}
