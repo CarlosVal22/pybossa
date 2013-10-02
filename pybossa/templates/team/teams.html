@@ -44,9 +44,6 @@
     </div>
 
     <div class="span9" style="min-height:400px">
-      {% if enforce_privacy and (current_user.is_anonymous() or (current_user.is_authenticated and not current_user.admin)) %}
-        {{ privacy.render_lock_page() }}
-      {% else %}
       <h1>{{ _('Teams') }} <small>{{total}} {{ _('registered teams') }}</small><a class="pull-right btn btn-primary" href="{{url_for('leaderboard.teams')}}"><i class="icon-trophy" style="color:white"></i> {{ _('Teamboard') }}</a></h1>
       {% if teams %}
       <ul class="thumbnails">
@@ -65,7 +62,6 @@
          </li>
         {% endfor %}
     </ul>
-    {% endif %}
     <div class="span9">
         {{ render_pagination(pagination) }}
     </div>
@@ -80,6 +76,5 @@ $("a[rel=popover]").popover({
         trigger: 'hover',
         placement: 'bottom'
                 });
-
 </script>
 {% endblock %}
