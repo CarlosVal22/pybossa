@@ -31,7 +31,7 @@
                 <h2>{{ _('You can') }}  
                     <a href="{{ url_for('team.new')}}">{{ _('create a new team') }}</a>
                     {{ _('or') }}
-                    <a href="{{ url_for('team.myteams') }}">{{ _('join to an existing team') }}</a>
+                    <a href="{{ url_for('team.public') }}">{{ _('join to an existing team') }}</a>
                 </h2>
               {% else %}
                 <h2>{{ _('No available teams') }}</h2>
