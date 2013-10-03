@@ -37,7 +37,7 @@
         <li {% if active_link=="myteams"%}class="active"{% endif %}><a href="{{ url_for('team.myteams')}}"><i class="icon-chevron-right"></i> {{ _('My Teams') }}</a></li>
         <li {% if active_link=="create"%}class="active"{% endif %}><a href="{{ url_for('team.new')}}"><i class="icon-chevron-right"></i> {{ _('Create a New') }}</a></li>
     {% endif %}
-    <li {% if active_link=="public"%}class="active"{% endif %}><a href="{{url_for('team.index')}}"><i class="icon-chevron-right"></i> {{ _('List of Public Teams') }}</a></li>
+    <li {% if active_link=="public"%}class="active"{% endif %}><a href="{{url_for('team.teams')}}"><i class="icon-chevron-right"></i> {{ _('List of Public Teams') }}</a></li>
     {% if current_user.admin == 1%}
       <li {% if active_link=="private"%}class="active"{% endif %}><a href="{{url_for('team.private')}}"><i class="icon-chevron-right"></i> {{ _('Public Invitation Only') }}</a></li>
     {% endif %}
