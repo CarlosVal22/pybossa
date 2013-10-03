@@ -72,19 +72,8 @@ class TeamForm(Form):
 
 @blueprint.route('/', defaults={'page': 1})
 @blueprint.route('/page/<int:page>')
-@login_required
 def index(page):
-    '''By default show the Public Teams'''
-    return team_index(page, cached_teams.get_public_data, 'public',
-                      True, False, gettext('Public Teams')
-                     )
-
-
-
-
-@blueprint.route('/teams', defaults={'page': 1})
-@blueprint.route('/teams/page/<int:page>')
-def teams(page):
+    ''' Show all teams in a grid'''
     per_page = 24
     count = db.session.query(model.Team).count()
     teams = db.session.query(model.Team)\
@@ -96,10 +85,20 @@ def teams(page):
 
     pagination = Pagination(page, per_page, count)
 
-    return render_template('team/teams.html', teams=teams,
+    return render_template('team/index.html', teams=teams,
                                               total=count,
                                               title="Teams",
                                               pagination=pagination)
+
+@blueprint.route('/teams', defaults={'page': 1})
+@blueprint.route('/teams/page/<int:page>')
+@login_required
+def teams(page):
+    ''' By default show the Public Teams '''
+    return teams_show(page, cached_teams.get_public_data, 'public',
+                      True, False, gettext('Public Teams')
+                     )
+
 @blueprint.route('/<name>/')
 def public_profile(name):
     ''' Render the public team profile'''
@@ -121,7 +120,7 @@ def private(page):
         abort(404)
 
     '''By show the private Teams'''
-    return team_index(page, cached_teams.get_private_teams, 'private',
+    return teams_show(page, cached_teams.get_private_teams, 'private',
                       True, False, gettext('Private Teams'))
 
 @blueprint.route('/myteams', defaults={'page': 1})
@@ -133,10 +132,10 @@ def myteams(page):
         abort(403)
 
     '''By show the private Teams'''
-    return team_index(page, cached_teams.get_signed_teams, 'myteams',
+    return teams_show(page, cached_teams.get_signed_teams, 'myteams',
                       True, False, gettext('My Teams'))
 
-def team_index(page, lookup, team_type, fallback, use_count, title):
+def teams_show(page, lookup, team_type, fallback, use_count, title):
     '''Show team list by type '''
     if not require.team.read():
         abort(403)
@@ -162,7 +161,7 @@ def team_index(page, lookup, team_type, fallback, use_count, title):
     if use_count:
         template_args.update({"count": count})
 
-    return render_template('/team/index.html', **template_args)
+    return render_template('/team/teams.html', **template_args)
 
 @blueprint.route('/<name>/settings')
 @login_required
@@ -472,7 +471,7 @@ def user_add(name,user=None):
 
     else:
         if team.public == True:
-            cached_teams.delete_team(team.id)
+            cached_teams.reset()
             user2team = User2Team(
                         user_id = user_search.id,
                         team_id = team.id
@@ -582,7 +581,7 @@ def user_delete(name,user=None):
                                     .first()
 
     if user2team:
-        cached_teams.delete_team(team.id)
+        cached_teams.reset()
         db.session.delete(user2team)
         db.session.commit()
         flash(gettext('Association to the team deleted'), 'success')
