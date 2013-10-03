@@ -14,7 +14,7 @@ class TestTeams(web.Helper):
         ''' Test TEAM create team work'''
         if method == "POST":
             if public == True:
-                return self.app.post('/team/new/',
+                return self.app.post('/team/new',
                             data={
                                 'name':        name,
                                 'description': description,
@@ -23,7 +23,7 @@ class TestTeams(web.Helper):
                                 },
                                 follow_redirects=True)
             else:
-                return self.app.post('/team/new/',
+                return self.app.post('/team/new',
                             data={
                                 'name':        name,
                                 'description': description,
@@ -65,7 +65,7 @@ class TestTeams(web.Helper):
 
     def test_00_team_index_anonymous(self):
         ''' Test TEAM index page works as anonymous user'''
-        res = self.app.get("/team/teams", follow_redirects=True)
+        res = self.app.get("/team/public", follow_redirects=True)
 
         err_msg = ("The anonymous user should not be able to access"
                   "but the returned status is %s" % res.data)
@@ -89,7 +89,7 @@ class TestTeams(web.Helper):
         self.register(username="tester2",
                 email="tester2@tester.com",
                 password="tester")
-        res = self.app.get("/team/teams", follow_redirects=True)
+        res = self.app.get("/team/public", follow_redirects=True)
         err_msg = ("There would be a team page with the label"
                 "No availabel teams:  %s" % res.data)
 	assert "No available teams" in res.data, err_msg
@@ -118,7 +118,7 @@ class TestTeams(web.Helper):
         self.register(username="tester2",
                 email="tester2@tester.com",
                 password="tester")
-        res = self.app.get("/team", follow_redirects=True)
+        res = self.app.get("/team/public", follow_redirects=True)
         err_msg = ("There would be a team page with the label"
                 "No availabel teams:  %s" % res.data)
         res = self.new_team(name="TestTeam")
@@ -191,7 +191,7 @@ class TestTeams(web.Helper):
                 email="tester2@tester.com",
                 password="tester")
 
-        res = self.app.get("/team", follow_redirects=True)
+        res = self.app.get("/team/public", follow_redirects=True)
         err_msg = "You can not see the public team %s" % _teamname
         assert "%s" % _teamname in res.data, err_msg
         self.signout()
@@ -214,7 +214,7 @@ class TestTeams(web.Helper):
         res = self.new_team(name=_teamname, public=False)
         self.signout()
 
-        res = self.app.get("/team/teams", follow_redirects=True)
+        res = self.app.get("/team/private", follow_redirects=True)
         err_msg = "You can not see the public team %s" % _teamname
         assert "Please sign in to access this page" in res.data, err_msg
 
@@ -231,13 +231,13 @@ class TestTeams(web.Helper):
                 email="tester2@tester.com",
                 password="tester")
 
-        res = self.app.get("/team/teams", follow_redirects=True)
+        res = self.app.get("/team/private", follow_redirects=True)
         err_msg = "An authenticated user can see the public invitation only team %s" % _teamname
         assert ("%s" % _teamname) not in res.data, err_msg
         self.signout()
 
     def test_12_team_public_invitation_only_view_admin(self):
-        ''' Test TEAM is an admin  can see a public invitation only team '''
+        ''' Test TEAM is an admin can see a public invitation only team '''
         _teamname = "TeamTest"
         self.register()
         self.signout()
@@ -250,8 +250,8 @@ class TestTeams(web.Helper):
         self.signout()
 
         self.signin()
-        res = self.app.get("/team/teams", follow_redirects=True)
-        err_msg = "Admin can see the public invitation team in section public"
+        res = self.app.get("/team/public", follow_redirects=True)
+        err_msg = "Admin can see the public invitation team in section private"
         assert ("%s" % _teamname) not in res.data, err_msg
 
         res = self.app.get("/team/private", follow_redirects=True)
