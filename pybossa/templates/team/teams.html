@@ -57,7 +57,10 @@
                     <li><strong><i class='icon-tasks'></i> {{ _('Type') }}</strong> {% if team['public'] %}{{ _('Public') }}{% else %}{{ _('Public invitation only') }} {% endif %}</li>
             </ul>
             ">
-             <img src="{{team['name'] | gravatar(size=90)}}">
+             
+             <img src="{{ 'default' | gravatar(size=90)}}">
+             
+             
         </a>
          </li>
         {% endfor %}
