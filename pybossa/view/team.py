@@ -90,10 +90,10 @@ def index(page):
                                               title="Teams",
                                               pagination=pagination)
 
-@blueprint.route('/teams', defaults={'page': 1})
-@blueprint.route('/teams/page/<int:page>')
+@blueprint.route('/public', defaults={'page': 1})
+@blueprint.route('/public/page/<int:page>')
 @login_required
-def teams(page):
+def public(page):
     ''' By default show the Public Teams '''
     return teams_show(page, cached_teams.get_public_data, 'public',
                       True, False, gettext('Public Teams')
@@ -291,7 +291,7 @@ class SearchForm(Form):
     ''' Search User Form Generic '''
     user = TextField(lazy_gettext('User'))
 
-@blueprint.route('/new/', methods=['GET', 'POST'])
+@blueprint.route('/new', methods=['GET', 'POST'])
 @login_required
 def new():
     ''' Creation of new team '''
@@ -398,7 +398,7 @@ def update(name):
             description=form.description.data,
             public=form.public.data
             )
-        cached_teams.delete_team(new_team.id)
+        cached_teams.reset()
         db.session.merge(new_team)
         db.session.commit()
         flash(gettext('Team updated!'), 'success')
