@@ -18,6 +18,7 @@ from pybossa.core import db
 from flask.ext.login import current_user
 from pybossa.model import User, Team, User2Team
 from sqlalchemy import or_, func, and_
+from operator import itemgetter
 
 STATS_TIMEOUT=50
 
@@ -247,6 +248,52 @@ def get_private_teams(page=1, per_page=5):
 
     return teams, count
 
+@cache.memoize(timeout=50)
+def get_users_teams_detail(team_id):
+    # Search users in the team
+    sql = text('''
+              SELECT user2team.user_id, user2team.created,"user".name, "user".fullname
+              FROM user2team
+              INNER JOIN "user" on user2team.user_id="user".id
+              WHERE user2team.team_id=:team_id;
+              ''')
+
+    results = db.engine.execute(sql, team_id=team_id)
+    users = []
+    
+    for row in results:
+        user = dict()
+        user = dict(id=row.user_id,
+                    name=row.name,
+                    fullname=row.name,
+                    created=row.created,
+                    rank=0, score=0
+                    )
+
+        # Get Rank and Score
+        sql = text('''
+                    WITH global_rank AS (
+                        WITH scores AS (
+                            SELECT user_id, COUNT(*) AS score FROM task_run
+                            WHERE user_id IS NOT NULL GROUP BY user_id)
+                        SELECT user_id, score, rank() OVER (ORDER BY score desc)
+                        FROM scores)
+                    SELECT * from global_rank WHERE user_id=:user_id;
+                    ''')
+
+        results_rank = db.engine.execute(sql, user_id=row.user_id)
+        for row_rank in results_rank:
+            user['rank'] = row_rank.rank
+            user['score'] = row_rank.score
+
+        users.append(user)
+
+    # Sort list by score
+    if users:
+        users = sorted(users, key=itemgetter('score'), reverse=True ) 
+
+    return users
+
 def reset():
     ''' Clean thie cache '''
     cache.delete('teams_get_public_count')
@@ -259,6 +306,7 @@ def reset():
     cache.delete_memoized(get_signed_teams)
     cache.delete_memoized(get_private_teams)
     cache.delete_memoized(get_team_summary)
+    cache.delete_memoized( get_users_teams_detail);
 
 def delete_team(team_id):
     ''' Reset team values in cache '''
