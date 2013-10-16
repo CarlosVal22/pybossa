@@ -344,10 +344,12 @@ def users(name):
     cached_teams.clean(1)
     team = cached_teams.get_team(name)
 
-    title = gettext('Search Users')
+    title = gettext('Team Members')
 
     if not require.team.read():
         abort(403)
+
+    users = cached_teams.get_users_teams_detail(team.id)
 
     # Search users in the team
     belongs = User2Team.query.filter(User2Team.team_id == team.id)\
@@ -356,6 +358,7 @@ def users(name):
     template = '/team/users.html'
     template_args = {
         "team": team,
+        "users": users,
         "belongs": belongs,
         "title": title
         }
