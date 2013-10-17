@@ -79,7 +79,7 @@ def get_team_summary(name):
     ''' Get TEAM data '''
     sql = text('''
             SELECT team.id,team.name,team.description,team.created,
-            team.owner_id,"user".name as owner, team.public
+            team.owner_id,"user".fullname as owner, team.public
             FROM team
             INNER JOIN "user" ON team.owner_id="user".id
             WHERE team.name=:name
@@ -265,7 +265,7 @@ def get_users_teams_detail(team_id):
         user = dict()
         user = dict(id=row.user_id,
                     name=row.name,
-                    fullname=row.name,
+                    fullname=row.fullname,
                     created=row.created,
                     rank=0, score=0
                     )
