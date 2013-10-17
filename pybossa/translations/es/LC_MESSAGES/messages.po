@@ -51,7 +51,7 @@ msgstr "Aplicaciones"
 
 #: templates/_navbar.html:14
 msgid "Create"
-msgstr "Crea"
+msgstr "Creado"
 
 #: templates/_navbar.html:15 templates/home/_about.html:3
 msgid "About"
