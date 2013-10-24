@@ -39,6 +39,7 @@ from pybossa.auth import require
 from sqlalchemy import or_, func, and_
 from pybossa.cache import teams as cached_teams
 from werkzeug.exceptions import HTTPException
+import json
 
 blueprint = Blueprint('team', __name__)
 
@@ -84,6 +85,22 @@ def index(page):
         abort(404)
 
     pagination = Pagination(page, per_page, count)
+#    tasks = db.session.query(model.Task)\
+#        .filter_by(app_id=430).all()
+#        .filter_by(id=13800).all()
+    
+#    for row in tasks:
+#        parsed_data = json.dumps( row.info )
+#        print "parse_data:", parsed_data
+#        json_object = json.loads(parsed_data)
+#        print "n_answers:", json_object['n_answers']
+#
+#        json_object['n_answers'] = 50
+#        row.info = json_object
+#
+#        db.session.merge(row)
+#        db.session.commit()
+#    print "Finalizado"
 
     return render_template('team/index.html', teams=teams,
                                               total=count,
