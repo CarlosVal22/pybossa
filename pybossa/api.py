@@ -14,6 +14,7 @@
 # along with PyBOSSA.  If not, see <http://www.gnu.org/licenses/>.
 
 import json
+import logging
 
 from flask import Blueprint, request, abort, Response, current_app
 from flask.views import MethodView
@@ -151,14 +152,22 @@ class APIBase(MethodView):
         try:
             self.valid_args()
             data = json.loads(request.data)
-            # Clean HATEOAS args
-            data = self.hateoas.remove_links(data)
-            inst = self.__class__(**data)
-            getattr(require, self.__class__.__name__.lower()).create(inst)
-            self._update_object(inst)
-            db.session.add(inst)
-            db.session.commit()
-            return json.dumps(inst.dictize())
+
+            ''' Es  TaskRunApi '''
+            current_app.logger.info(self.__class__.__name__)
+            current_app.logger.info(data['info'])
+            if self.__class__.__name__ == 'TaskRun' and len(data['info'])<5:
+                current_app.logger.error('Data with errors')
+                return json.dumps(data)
+            else:
+                # Clean HATEOAS args
+                data = self.hateoas.remove_links(data)
+                inst = self.__class__(**data)
+                getattr(require, self.__class__.__name__.lower()).create(inst)
+                self._update_object(inst)
+                db.session.add(inst)
+                db.session.commit()
+                return json.dumps(inst.dictize())
         except Exception as e:
             return self.format_exception(e, action='POST')
 
