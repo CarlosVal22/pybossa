@@ -35,10 +35,10 @@
             <tbody>
                  {% for user in users %}
                     <tr>
-                        <td>{{ user['rank'] }}</td>
+                        <td>{% if user['rank'] > 0  %} {{ user['rank'] }} {% endif %}</td>
                         <td><strong><a href="{{url_for('account.public_profile', name=user['name']) }}">{{ user['fullname'] }}</a></strong></td>
                         <td>{{ user['created'][0:10] }}</td>
-                        <td>{{ user['score'] }}</td>
+                        <td>{% if user['score'] > 0  %} {{ user['score'] }} {% endif %}</td>
                         {% if current_user.id == team.owner_id or current_user.admin == 1 %}
                             <td>
                             {% if user['id'] == team.owner_id %}
