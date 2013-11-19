@@ -13,7 +13,7 @@ setup(
     # metadata for upload to PyPI
     author = 'Citizen Cyberscience Centre and Open Knowledge Foundation',
     # TODO: change
-    author_email = 'info@pybossa.com',
+    author_email = 'info@socientize.eu',
     description = 'Open Source CrowdSourcing framework',
     long_description = '''PyBossa is an open source crowdsourcing solution for volunteer computing, thinking and sensing ''',
     license = 'AGPLv3',
