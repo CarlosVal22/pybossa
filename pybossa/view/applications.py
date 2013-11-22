@@ -70,7 +70,7 @@ class AppForm(Form):
     category_id = SelectField(lazy_gettext('Category'), coerce=int)
     long_description = TextAreaField(lazy_gettext('Long Description'))
     hidden = BooleanField(lazy_gettext('Hide?'))
-
+    maintenance = BooleanField(lazy_gettext('Maintenance?'))
 
 class TaskPresenterForm(Form):
     id = IntegerField(label=None, widget=HiddenInput())
@@ -269,6 +269,7 @@ def new():
                     category_id=form.category_id.data,
                     allow_anonymous_contributors=form.allow_anonymous_contributors.data,
                     hidden=int(form.hidden.data),
+                    maintenance=int(form.maintenance.data),
                     owner_id=current_user.id,
                     info=info,)
 
@@ -397,7 +398,7 @@ def update(short_name):
 
     def handle_valid_form(form):
         hidden = int(form.hidden.data)
-
+        maintenance = int(form.maintenance.data)
         new_info = {}
         # Add the info items
         app, n_tasks, n_task_runs, overall_progress, last_activity = app_by_shortname(short_name)
@@ -409,6 +410,9 @@ def update(short_name):
         # Merge info object
         info = dict(app.info.items() + new_info.items())
 
+        current_app.logger.error("***uPdate***")
+        current_app.logger.error(maintenance)
+
         new_application = model.App(
             id=form.id.data,
             name=form.name.data,
@@ -416,6 +420,7 @@ def update(short_name):
             description=form.description.data,
             long_description=form.long_description.data,
             hidden=hidden,
+            maintenance=maintenance,
             info=info,
             owner_id=app.owner_id,
             allow_anonymous_contributors=form.allow_anonymous_contributors.data,
@@ -731,6 +736,15 @@ def presenter(short_name):
         flash(gettext(msg), 'warning')
         return redirect(url_for('account.signin',
                         next=url_for('.presenter', short_name=app.short_name)))
+
+    # If app is under maintain
+    # Avoid if the current_user is the ower or is admin
+    if app.maintenance == 1 and (current_user.is_anonymous() \
+                      or (current_user.id != app.owner_id and current_user.admin == 0)):
+        msg = "Oops! This application is under maintenace, Try later, thank you"
+        flash(gettext(msg), 'warning')
+        return redirect(url_for('.details',
+                                short_name=app.short_name))
 
     msg = "Ooops! You are an anonymous user and will not \
            get any credit for your contributions. Sign in \
