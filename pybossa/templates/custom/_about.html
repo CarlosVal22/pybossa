@@ -3,13 +3,22 @@
             <h1>{{ _('About') }}</h1>
             <p>
             {{ _('Citizen science is an innovative concept to involve the general public in scientific processes. One of the best ways to help people understand science is by letting them participate in scientific research and experiments. This is what citizen science tries to achieve.') }}
+            </p>
             <p>
             {{ _('Citizen science is an innovative concept to involve the general public in scientific processes. One of the best ways to help people understand science is by letting them participate in scientific research and experiments. This is what citizen science tries to achieve.') }}
+            </p>
             <p>
             {{ _('The') }}  <a href="http://www.socientize.eu">SOCIENTIZE</a> {{ _('project will coordinate all agents involved in the citizen science process, setting the basis for this new open science paradigm. The project will promote the usage of science infrastructures composed of dedicated and external resources, including professional and amateur scientists.') }} <a href="http://www.socientize.eu">SOCIENTIZE</a> {{ _('will set-up a network where infrastructure providers and researchers will recruit volunteers from a general public to perform science at home.') }}
+            </p>
             <p>
             {{ _('Individual citizens will contribute to scientific studies with their own knowledge and resources participating in an active way. Citizens will be donors by connecting their own computing resources, such us smart phones, desktop computers or other devices to science infrastructure. But, citizens will also be actors when they actively participate in the scientific process, in different phases: from short and easy activities to the inception of new research lines, leading people driven developments or in the development of software components, similar to open-source communities. We propose to open e-science to the people, even considering the knowledge and the time of the citizen scientists as part of the resources that constitute the e-infrastructures, and call this enhanced citizen-based infrastructure “c-infrastructure”.') }}
-            <p>
+            </p>
+            <!--h1>{{_('Researchers') }}</h1>
+            <a href="http://bifi.es/~borge/" target="_blank">Javier Borge-Holthoefer</a><br>
+            <a href="http://bifi.es/en/people/67-english-categories/research/biochemistry-a-cmb/stem-cells-and-apoptosis-frontpage/stem-cells-and-apoptosis" target="_blank">Jos&#233; Alberto Carrodeguas Villar</a-->
+            <h1>{{_('Research Groups') }}</h1>
+            <a href="http://cosnet.bifi.es/" target="_blank"><img src="{{url_for('static', filename='img/cosnet_logo.png')}}"> Cosnet Lab</a><br><br>
+            <a href="http://bifi.es/en/people/56-english-categories/research/biochemistry-a-cmb/stem-cells-and-apoptosis-frontpage" target="_blank"><img src="{{url_for('static', filename='img/bifi_logo.png')}}"> BIFI: Stem Cells and Apoptosis Group</a>
             <h1>{{ _('Statistics') }}</h1>
             <p>
            {{ _(' The system provides individual statistics for every application in the system, as well as a') }} <a href="{{url_for('stats.index')}}">{{ _('general overview about the system like total number of users, tasks, etc') }}</a>. 
