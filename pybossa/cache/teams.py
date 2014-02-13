@@ -178,7 +178,6 @@ def user_belong_team(team_id):
                                 .first()
         return (1,0)[belong is None]
 
-@memoize()
 def get_signed_teams(page=1, per_page=5):
     '''Return a list of public teams with a pagination'''
     sql = text('''

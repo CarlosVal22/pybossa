@@ -126,6 +126,7 @@ def private(page):
 @blueprint.route('/myteams/page/<int:page>')
 @login_required
 def myteams(page):
+    print 'my teams'
     ''' Render my teams section '''
     if not require.team.create():
         abort(403)
