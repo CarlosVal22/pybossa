@@ -42,6 +42,8 @@ from pybossa.view.help import blueprint as help
 from pybossa.cache import apps as cached_apps
 from pybossa.cache import users as cached_users
 from pybossa.ratelimit import get_view_rate_limit
+from pybossa.view.team import blueprint as team
+
 
 
 logger = logging.getLogger('pybossa')
@@ -54,6 +56,8 @@ app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(leaderboard, url_prefix='/leaderboard')
 app.register_blueprint(stats, url_prefix='/stats')
 app.register_blueprint(help, url_prefix='/help')
+app.register_blueprint(team, url_prefix='/team')
+
 
 # Enable Twitter if available
 try:  # pragma: no cover
