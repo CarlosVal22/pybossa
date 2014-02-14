@@ -308,27 +308,33 @@ def get_users_teams_detail(team_id):
 
     return users
 
-def reset():
-    ''' Clean thie cache '''
-    #cache.delete('teams_get_public_count')
-    #cache.delete('teams_get_count')
-    #cache.delete('teams_get_public_data')
-    #cache.delete_memoized(get_number_members)
-    #cache.delete_memoized(get_rank)
-    #cache.delete_memoized(get_team)
-    #cache.delete_memoized(user_belong_team)
-    #cache.delete_memoized(get_signed_teams)
-    #cache.delete_memoized(get_private_teams)
-    #cache.delete_memoized(get_team_summary)
-    #cache.delete_memoized( get_users_teams_detail);
+#@cache(key_prefix="front_page_top_teams", timeout=ONE_DAY)
+@cache(key_prefix="front_page_top_teams", timeout=1)
+def get_top(n=10):
+    """Return the n=10 top teams"""
+    sql = text(
+            '''
+            WITH  global_rank as(
+                WITH scores AS(
+                    SELECT team_id, count(*) AS score FROM user2team
+                    INNER JOIN task_run ON user2team.user_id = task_run.user_id
+                    GROUP BY user2team.team_id )
+                SELECT team_id,score,rank() OVER (ORDER BY score DESC)
+                FROM  scores)
+            SELECT rank, score, team.name, team.description, team.created,
+            team.public 
+            FROM global_rank
+            JOIN team ON team_id=team.id
+            ORDER BY rank
+            LIMIT :limit;
+            ''')
 
-def delete_team(team_id):
-    ''' Reset team values in cache '''
-    #cache.delete_memoized(get_team, team_id)
-
-def clean(team_id):
-    ''' Clean all items in cache '''
-    reset()
+    results = db.engine.execute(sql, limit=n)
+    top_teams = []
+    for row in results:
+        print 
+        top_teams.append(row)
+    return top_teams
 
 def delete_team_summary():
     """Delete from cache the team summary."""
