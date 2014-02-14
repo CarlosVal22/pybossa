@@ -308,8 +308,7 @@ def get_users_teams_detail(team_id):
 
     return users
 
-#@cache(key_prefix="front_page_top_teams", timeout=ONE_DAY)
-@cache(key_prefix="front_page_top_teams", timeout=1)
+@cache(key_prefix="front_page_top_teams", timeout=ONE_DAY)
 def get_top(n=10):
     """Return the n=10 top teams"""
     sql = text(
