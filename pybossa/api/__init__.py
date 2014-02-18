@@ -46,6 +46,7 @@ from task_run import TaskRunAPI
 from app import AppAPI
 from category import CategoryAPI
 from vmcp import VmcpAPI
+from facebook import UserFbAPI
 
 blueprint = Blueprint('api', __name__)
 
@@ -103,8 +104,16 @@ def new_task(app_id):
             offset = int(request.args.get('offset'))
         else:
             offset = 0
-        user_id = None if current_user.is_anonymous() else current_user.id
-        user_ip = request.remote_addr if current_user.is_anonymous() else None
+            
+        # Identify the current user
+        fb_user_id = request.args.get('facebook_user_id')
+        if (fb_user_id == None):
+            user_id = None if current_user.is_anonymous() else current_user.id
+        else:
+            fb_api = UserFbAPI()
+            fb_user = fb_api.get_user_by_fb_id(int(fb_user_id))
+            user_id = fb_user.id
+        user_ip = request.remote_addr if current_user.is_anonymous() and fb_user_id == None else None    
         task = sched.new_task(app_id, user_id, user_ip, offset)
         # If there is a task for the user, return it
 
@@ -120,7 +129,6 @@ def new_task(app_id):
             return Response(json.dumps({}), mimetype="application/json")
     except Exception as e:
         return error.format_exception(e, target='app', action='GET')
-
 
 @jsonpify
 @blueprint.route('/app/<short_name>/userprogress')
@@ -146,9 +154,19 @@ def user_progress(app_id=None, short_name=None):
         if app_id:
             app = db.session.query(model.App)\
                     .get(app_id)
-
+        
         if app:
-            if current_user.is_anonymous():
+            
+            #  Identify the current user
+            fb_user_id = request.args.get('facebook_user_id')
+            print(fb_user_id)
+            if fb_user_id != None:
+                fb_api = UserFbAPI()
+                fb_user = fb_api.get_user_by_fb_id(int(fb_user_id))
+                tr = db.session.query(model.TaskRun)\
+                       .filter(model.TaskRun.app_id == app.id)\
+                       .filter(model.TaskRun.user_id == fb_user.id)
+            elif current_user.is_anonymous():
                 tr = db.session.query(model.TaskRun)\
                        .filter(model.TaskRun.app_id == app.id)\
                        .filter(model.TaskRun.user_ip == request.remote_addr)
@@ -165,3 +183,43 @@ def user_progress(app_id=None, short_name=None):
             return abort(404)
     else:  # pragma: no cover
         return abort(404)
+
+@jsonpify
+@blueprint.route('/app/get_current_user_id')
+@crossdomain(origin='*', headers=cors_headers)
+def get_current_user_id():
+    userId = None
+    fb_user_id = request.args.get('facebook_user_id')
+    
+    if (fb_user_id != None):
+        fb_api = UserFbAPI()
+        fb_user = fb_api.get_user_by_fb_id(int(fb_user_id))
+        userId = fb_user.id
+    elif not current_user.is_anonymous():
+        userId = current_user.id
+    else:
+        userId = request.remote_addr
+    return Response( json.dumps({"current_user_id": str(userId)}), mimetype="application/json" )
+
+@jsonpify
+@blueprint.route('/user/authenticate_facebook_user', methods=['POST'])
+@crossdomain(origin='*', headers=cors_headers)
+def authenticate_facebook_user():
+    request_data = json.loads(request.data)
+    fb_user_id = request_data["facebook_user_id"]
+    user_email = request_data["email"]
+    user_name = request_data["name"]
+    user_full_name = request_data["full_name"]
+    
+    fb_api = UserFbAPI()
+    fb_user = fb_api.get_user_by_fb_id(fb_user_id)
+    if (fb_user == None):
+        user_by_email = db.session.query(model.User).filter_by(email_addr=user_email).first()
+        fb_user = user_by_email
+
+    res = None
+    if (fb_user == None):
+        res = fb_api.create_fb_user(user_full_name, user_name, user_email, fb_user_id)
+    else:
+        res = fb_api.update_fb_user(fb_user, fb_user_id)
+    return res
