@@ -339,3 +339,9 @@ def delete_team_summary():
     """Delete from cache the team summary."""
     delete_memoized(get_teams_count)
     delete_memoized(get_teams_page)
+
+def delete_team_members():
+    delete_memoized(get_team_summary)
+    delete_memoized(get_number_members)
+    delete_memoized(user_belong_team)
+    delete_memoized(get_users_teams_detail)
