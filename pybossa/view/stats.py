@@ -46,6 +46,13 @@ def n_anon_users():
         n_anon = row.n_anon
     return n_anon
 
+#@cache(timeout=ONE_DAY, key_prefix="site_n_teams")
+def n_teams():
+    sql = text('''SELECT COUNT(Team.id) AS n_team FROM Team;''')
+    results = db.engine.execute(sql)
+    for row in results:
+        n_team = row.n_team
+    return n_team
 
 @cache(timeout=ONE_DAY, key_prefix="site_n_tasks")
 def n_tasks_site():
@@ -115,6 +122,34 @@ def get_top5_users_24_hours():
         top5_users_24_hours.append(user)
     return top5_users_24_hours
 
+@cache(timeout=ONE_DAY, key_prefix="site_top5_teams_24_hours")
+def get_top5_teams_24_hours():
+    # Top 5 Most active teams in last 24 hours
+    sql = text( 
+            '''
+            WITH global_rank as(
+                WITH scores AS(
+                    SELECT team_id, count(*) AS score FROM user2team
+                    INNER JOIN task_run ON user2team.user_id = task_run.user_id
+                    WHERE DATE(task_run.finish_time) > NOW() - INTERVAL '24 hour'
+                    AND DATE(task_run.finish_time) <= NOW() 
+                    GROUP BY user2team.team_id )
+                SELECT team_id,score,rank() OVER (ORDER BY score DESC)
+                FROM  scores)
+            SELECT rank, score, team.id as id,team.name as name
+            FROM global_rank
+            JOIN team ON team_id=team.id
+            ORDER BY rank
+            LIMIT 5;''')
+
+    results = db.engine.execute(sql, limit=5)
+    top5_teams_24_hours = []
+    for row in results:
+        team = dict(id=row.id,
+                    name=row.name,
+                    score=row.score)
+        top5_teams_24_hours.append(team)
+    return top5_teams_24_hours
 
 @cache(timeout=ONE_DAY, key_prefix="site_locs")
 def get_locs(): # pragma: no cover
@@ -149,6 +184,8 @@ def index():
 
     n_total_users = n_anon + n_auth
 
+    cvg = n_teams()
+
     n_published_apps = cached_apps.n_published()
     n_draft_apps = cached_apps.n_draft()
     n_total_apps = n_published_apps + n_draft_apps
@@ -160,6 +197,7 @@ def index():
     top5_apps_24_hours = get_top5_apps_24_hours()
 
     top5_users_24_hours = get_top5_users_24_hours()
+    top5_teams_24_hours = get_top5_teams_24_hours()
 
     locs = get_locs()
 
@@ -168,6 +206,7 @@ def index():
         show_locs = True
 
     stats = dict(n_total_users=n_total_users, n_auth=n_auth, n_anon=n_anon,
+                 n_teams=cvg,
                  n_published_apps=n_published_apps,
                  n_draft_apps=n_draft_apps,
                  n_total_apps=n_total_apps,
@@ -196,5 +235,6 @@ def index():
                            locs=json.dumps(locs),
                            show_locs=show_locs,
                            top5_users_24_hours=top5_users_24_hours,
+                           top5_teams_24_hours=top5_teams_24_hours,
                            top5_apps_24_hours=top5_apps_24_hours,
                            stats=stats)
