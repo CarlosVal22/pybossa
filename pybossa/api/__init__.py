@@ -202,6 +202,17 @@ def get_current_user_id():
     return Response( json.dumps({"current_user_id": str(userId)}), mimetype="application/json" )
 
 @jsonpify
+@blueprint.route('/settings')
+@crossdomain(origin='*', headers=cors_headers)
+def settings(app_id=None, short_name=None):
+    if current_user.is_anonymous():
+        tmp = dict( language = None )
+    else:
+        tmp = dict( language = current_user.locale )
+
+    return Response( json.dumps(tmp), mimetype="application/json" )
+
+@jsonpify
 @blueprint.route('/user/authenticate_facebook_user', methods=['POST'])
 @crossdomain(origin='*', headers=cors_headers)
 def authenticate_facebook_user():
