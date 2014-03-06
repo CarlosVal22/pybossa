@@ -473,6 +473,7 @@ def user_add(name,user=None):
 
     else:
         if team.public == True:
+            cached_teams.delete_team_members()
             user2team = User2Team(
                         user_id = user_search.id,
                         team_id = team.id
@@ -538,7 +539,7 @@ def join_private_team():
         user2team = User2Team(user_id = current_user.id,
                               team_id = team.id
                               )
-        cached_teams.delete_team(team_id)
+        cached_teams.delete_team_summary()
         db.session.add(user2team)
         db.session.commit()
         flash(gettext('Congratulations! You belong to the Public Invitation Only Team'), 'sucess')
@@ -582,7 +583,7 @@ def user_delete(name,user=None):
                                     .first()
 
     if user2team:
-        cached_teams.reset()
+        cached_teams.delete_team_members()
         db.session.delete(user2team)
         db.session.commit()
         flash(gettext('Association to the team deleted'), 'success')
