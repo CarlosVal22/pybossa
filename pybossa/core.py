@@ -46,7 +46,7 @@ def create_app(theme='default'):
     setup_logging(app)
     login_manager.setup_app(app)
     # Set up Gravatar for users
-    gravatar = Gravatar(app, size = 100, rating = 'g', default = 'mm', force_default = False, force_lower = False)
+    gravatar = Gravatar(app, size = 100, rating = 'g', default = 'mm', force_default = False, force_lower = False, use_ssl=True)
     return app
 
 
