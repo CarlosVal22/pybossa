@@ -473,7 +473,6 @@ def user_add(name,user=None):
 
     else:
         if team.public == True:
-            cached_teams.reset()
             user2team = User2Team(
                         user_id = user_search.id,
                         team_id = team.id
