@@ -79,8 +79,6 @@ def index(page):
     per_page = 24
     count = cached_teams.get_teams_count()
     teams = cached_teams.get_teams_page(page, per_page)
-    if not teams and page != 1:
-        abort(404)
     pagination = Pagination(page, per_page, count)
     if not teams and page != 1:
         abort(404)
