@@ -22,3 +22,6 @@
 [submodule "pybossa/themes/default"]
 	path = pybossa/themes/default
 	url = git://github.com/PyBossa/pybossa-default-theme
+[submodule "pybossa/themes/socientize"]
+	path = pybossa/themes/socientize
+	url = git://github.com/chispita/pybossa-default-theme
