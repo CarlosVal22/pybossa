@@ -35,7 +35,7 @@ from pybossa.auth import require
 from pybossa.hateoas import Hateoas
 from pybossa.ratelimit import ratelimit
 from pybossa.error import ErrorStatus
-
+from facebook import UserFbAPI
 
 cors_headers = ['Content-Type', 'Authorization']
 
@@ -142,11 +142,25 @@ class APIBase(MethodView):
             self._post()
             self.valid_args()
             data = json.loads(request.data)
+            
+            # Remove facebook_user_id key and retrieve the respective user
+            fb_user = None
+            if "facebook_user_id" in data.keys():
+                fb_api = UserFbAPI()
+                fb_user_id = data["facebook_user_id"]
+                fb_user = fb_api.get_user_by_fb_id(fb_user_id)
+                del data["facebook_user_id"]
+
             # Clean HATEOAS args
             data = self.hateoas.remove_links(data)
             inst = self.__class__(**data)
             getattr(require, self.__class__.__name__.lower()).create(inst)
-            self._update_object(inst)
+
+            if fb_user == None:
+                self._update_object(inst)
+            else:
+                inst.user = fb_user
+            
             db.session.add(inst)
             db.session.commit()
             return json.dumps(inst.dictize())
