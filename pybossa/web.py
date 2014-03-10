@@ -41,7 +41,10 @@ from pybossa.view.stats import blueprint as stats
 from pybossa.view.help import blueprint as help
 from pybossa.cache import apps as cached_apps
 from pybossa.cache import users as cached_users
+from pybossa.cache import teams as cached_teams
 from pybossa.ratelimit import get_view_rate_limit
+from pybossa.view.team import blueprint as team
+
 
 
 logger = logging.getLogger('pybossa')
@@ -54,6 +57,8 @@ app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(leaderboard, url_prefix='/leaderboard')
 app.register_blueprint(stats, url_prefix='/stats')
 app.register_blueprint(help, url_prefix='/help')
+app.register_blueprint(team, url_prefix='/team')
+
 
 # Enable Twitter if available
 try:  # pragma: no cover
@@ -147,7 +152,7 @@ def global_template_context():
     # Cookies warning
     cookie_name = app.config['BRAND'] + "_accept_cookies"
     show_cookies_warning = False
-    print request.cookies.get(cookie_name)
+    #print request.cookies.get(cookie_name)
     if not request.cookies.get(cookie_name):
         show_cookies_warning = True
 
@@ -215,13 +220,16 @@ def home():
     """ Render home page with the cached apps and users"""
     d = {'featured': cached_apps.get_featured_front_page(),
          'top_apps': cached_apps.get_top(),
-         'top_users': None}
+         'top_users': None,
+         'top_teams': None}
 
     if app.config['ENFORCE_PRIVACY'] and current_user.is_authenticated():
         if current_user.admin:
             d['top_users'] = cached_users.get_top()
+            d['top_teams'] = cached_teams.get_top()
     if not app.config['ENFORCE_PRIVACY']:
         d['top_users'] = cached_users.get_top()
+        d['top_teams'] = cached_teams.get_top()
     return render_template('/home/index.html', **d)
 
 
