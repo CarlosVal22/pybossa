@@ -22,7 +22,7 @@ from flask import render_template
 from sqlalchemy.sql import text
 
 from pybossa.core import db
-from pybossa.cache import cache, ONE_DAY
+from pybossa.cache import cache, ONE_DAY, ONE_HOUR
 from pybossa.cache import apps as cached_apps
 
 blueprint = Blueprint('stats', __name__)
@@ -46,7 +46,7 @@ def n_anon_users():
         n_anon = row.n_anon
     return n_anon
 
-#@cache(timeout=ONE_DAY, key_prefix="site_n_teams")
+@cache(timeout=ONE_DAY, key_prefix="site_n_teams")
 def n_teams():
     sql = text('''SELECT COUNT(Team.id) AS n_team FROM Team;''')
     results = db.engine.execute(sql)
@@ -184,7 +184,7 @@ def index():
 
     n_total_users = n_anon + n_auth
 
-    cvg = n_teams()
+    n_team = n_teams()
 
     n_published_apps = cached_apps.n_published()
     n_draft_apps = cached_apps.n_draft()
@@ -206,7 +206,7 @@ def index():
         show_locs = True
 
     stats = dict(n_total_users=n_total_users, n_auth=n_auth, n_anon=n_anon,
-                 n_teams=cvg,
+                 n_teams=n_team,
                  n_published_apps=n_published_apps,
                  n_draft_apps=n_draft_apps,
                  n_total_apps=n_total_apps,
