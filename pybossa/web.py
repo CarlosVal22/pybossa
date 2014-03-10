@@ -152,7 +152,7 @@ def global_template_context():
     # Cookies warning
     cookie_name = app.config['BRAND'] + "_accept_cookies"
     show_cookies_warning = False
-    print request.cookies.get(cookie_name)
+    #print request.cookies.get(cookie_name)
     if not request.cookies.get(cookie_name):
         show_cookies_warning = True
 
@@ -217,7 +217,6 @@ def api_authentication():
 
 @app.route('/')
 def home():
-    print '*** Home ***'
     """ Render home page with the cached apps and users"""
     d = {'featured': cached_apps.get_featured_front_page(),
          'top_apps': cached_apps.get_top(),
