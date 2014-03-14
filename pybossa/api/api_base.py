@@ -154,13 +154,11 @@ class APIBase(MethodView):
             # Clean HATEOAS args
             data = self.hateoas.remove_links(data)
             inst = self.__class__(**data)
-            getattr(require, self.__class__.__name__.lower()).create(inst)
-
             if fb_user == None:
                 self._update_object(inst)
             else:
                 inst.user = fb_user
-            
+            getattr(require, self.__class__.__name__.lower()).create(inst)
             db.session.add(inst)
             db.session.commit()
             return json.dumps(inst.dictize())
