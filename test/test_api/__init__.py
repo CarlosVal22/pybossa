@@ -23,11 +23,12 @@ from base import web, model, Fixtures, db, redis_flushall
 
 def teardown_package(cls):
     model.rebuild_db()
+    redis_flushall()
 
 
 class HelperAPI:
 
-    endpoints = ['app', 'task', 'taskrun']
+    endpoints = ['app', 'task', 'taskrun', 'user']
 
 
     def setUp(self):

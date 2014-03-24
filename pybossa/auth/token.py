@@ -16,22 +16,20 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with PyBossa.  If not, see <http://www.gnu.org/licenses/>.
 
-from base import web, model, Fixtures, redis_flushall
+from flask.ext.login import current_user
 
 
-class TestAuthentication:
-    @classmethod
-    def setup_class(cls):
-        cls.app = web.app.test_client()
-        model.rebuild_db()
-        Fixtures.create()
+def create(token=None):
+    return False
 
-    @classmethod
-    def teardown_class(cls):
-        model.rebuild_db()
-        redis_flushall()
 
-    def test_api_authenticate(self):
-        """Test AUTHENTICATION works"""
-        res = self.app.get('/?api_key=%s' % Fixtures.api_key)
-        assert 'checkpoint::logged-in::tester' in res.data, res.data
+def read(token=None):
+    return not current_user.is_anonymous()
+
+
+def update(token=None):
+    return False
+
+
+def delete(token=None):
+    return False

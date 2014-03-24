@@ -26,6 +26,7 @@ import taskrun
 import category
 import user
 import team
+import token
 
 class Requirement(object):
     """ Checks a function call and raises an exception if the

@@ -135,6 +135,16 @@ For a list of TaskRuns use::
 
     GET http://{pybossa-site-url}/api/taskrun
 
+Finally, you can get a list of users by doing::
+
+    GET http://{pybossa-site-url}/api/user
+
+.. note::
+    Please, notice that in order to keep users privacy, only their locale and
+    nickname will be shared by default. Optionally, users can disable privacy
+    mode in their settings. By doing so, also their fullname and account
+    creation date will be visible for everyone through the API.
+
 .. note::
     By default PyBossa limits the list of items to 20. If you want to get more
     items, use the keyword **limit=N** with **N** being a number to get that
@@ -293,6 +303,24 @@ available for the user, otherwise it will return **None**.
     Some applications will want to pre-load the next task for the current user.
     This is possible by passing the argument **?offset=1** to the **newtask**
     endpoint.
+
+
+Requesting the user's oAuth tokens
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A user who has registered or signed in with any of the third parties supported
+by PyBossa (currently Twitter, Facebook and Google) can request his own oAuth
+tokens by doing::
+
+    GET http://{pybossa-site-url}/api/{app.id}/token
+
+Additionally, the user can specify any of the tokens if only its retrieval is
+desired::
+
+    GET http://{pybossa-site-url}/api/{app.id}/token/{provider}
+
+Where 'provider' will be any of the third parties supported, i.e. 'twitter',
+'facebook' or 'google'.
 
 Example Usage
 -------------
